@@ -1,39 +1,37 @@
+<div class="notification_wrapper">
 <div id="notification" class="notification_hide"></div>
+</div>
 
 <div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}">
-
-	<a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/">首頁</a>
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/rank/{{c.id}}" ng-repeat="c in candidates">{{c.name}}大亂鬥</a>
-
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/policy/{{candidate.id}}/{{p.id}}" ng-repeat="p in policy">{{p.indexTitle}} {{p.title}}</a>
+  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >{{candidate.name}}給問 #3</a>
+  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >{{candidate.name}}給問 #2</a>
+  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >{{candidate.name}}給問 #1</a>
 
 
 </div>
 
 <header class="md-whiteframe-z1">
 
-
-
-  <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
-
-  <div class="nav_list_logo l_inline" ng-click="go('.')">市長給問嗎 x 最後一役</div>
+  <!--<div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>-->
+  <!-- <img src="images/watchout_logo.svg" id="watchout_nav_logo"> -->
+  <a href="/"><div class="nav_list_home"><i class="fa fa-flask"></i> 給問 2.0</div></a>
 
   <div class="nav_list_function">
-    <!-- 候選人選單 -->
-    <div class="nav_list_function_item l_inline" ng-click="toggleCandidateMenu()" id="candidateTopMenu">
-        <div class="nav_list_function_item_select" ng-if="!candidate"><i class="fa fa-cog"></i> 候選人</div>
-        <div class="nav_list_function_item_select" ng-if="candidate"><i class="fa fa-cog"></i> {{candidate.name}}</div>
-        <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showCandidateMenu}"></div>
-        <div class="nav_list_function_item_inner md-whiteframe-z1" ng-class="{'nav_list_function_item_hide':!showCandidateMenu}" ng-repeat="c in candidates" ng-click="chooseCandidate(c.id)">
-          <img src="images/candidates_avatar/{{c.id}}.jpg">
-          <div class="nav_list_function_item_text">{{c.name}}</div>
+
+    <!-- toggle control -->
+    <div id="toggleCtrl">
+        <div class="slider_wrap">
+            <input type="checkbox" id="s1" ng-click="toggleSignFilter()"/>
+            <label class="slider" for="s1"></label>
         </div>
     </div>
+
+    
     <!-- 登入選單 -->
-    <div class="nav_list_function_item l_inline">
-        <div class="nav_list_function_item_select" ng-hide="user" ng-click="login()"><i class="fa fa-user"></i> 登入</div>
+    <div class="nav_list_function_item_user l_inline" id="userMenu">
+        <div class="nav_list_function_item_select" ng-hide="user" ng-click="login()"><i class="fa fa-facebook"></i> 登入</div>
         <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user"></div>
-        <div class="nav_list_function_item_select" ng-show="user" ng-click="toggleUserMenu()"><i class="fa fa-user"></i> {{user.name}}</div>
+        <div class="nav_list_function_item_select" ng-show="user" ng-click="toggleUserMenu()"><img class="user_profile_image" src="images/user.png"></div>
         <div class="nav_list_function_item_tooltip" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user" ng-click="logout()">
         	<div class="tri-up" ng-show="showUserMenu"></div>登出
         </div>

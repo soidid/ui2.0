@@ -35,17 +35,35 @@ app.directive('errSrc', function() {
 app.config(['$routeProvider','$locationProvider',
   function($routeProvider,$locationProvider){
     $routeProvider.
-      when('/policy/:cid/:pid',{
-      templateUrl: 'partials/policy.html',
-      controller: 'PolicyCtrl'
+      when('/person/:cid',{
+      templateUrl: 'partials/person.html',
+      controller: 'PersonCtrl'
     }).
-      when('/rank/:cid',{
-      templateUrl: 'partials/rank.html',
-      controller: 'RankCtrl'
+      when('/person/:cid/respond',{
+      templateUrl: 'partials/respond.html',
+      controller: 'PersonCtrl'
     }).
-      when('/policy/:cid',{
-      templateUrl: 'partials/candidate.html',
-      controller: 'CandidateCtrl'
+      when('/groups/:cid',{
+      templateUrl: 'partials/group.html',
+      controller: 'GroupCtrl'
+    }).
+      when('/groups/:cid/respond',{
+      templateUrl: 'partials/group-respond.html',
+      controller: 'GroupCtrl'
+    }).
+      when('/groups/:cid/person',{
+      templateUrl: 'partials/group-person.html',
+      controller: 'GroupCtrl'
+    }).
+      when('/how-to-ask',{
+      templateUrl: 'partials/how-to-ask.html',
+      controller: 'IndexCtrl'
+    }).
+      when('/terms',{
+      templateUrl: 'partials/terms.html'
+    }).
+      when('/contact',{
+      templateUrl: 'partials/contact.html'
     }).
       otherwise({
       redirectTo:'/',
@@ -111,6 +129,7 @@ app.controller('AuthCtrl',['$scope', 'DataService', '$location', function($scope
 
   $scope.toggleCandidateMenu = function(){
     $scope.showCandidateMenu = !$scope.showCandidateMenu;
+   
   };
   $scope.toggleUserMenu = function(){
     if($scope.user){
@@ -121,6 +140,7 @@ app.controller('AuthCtrl',['$scope', 'DataService', '$location', function($scope
       $scope.candidates = data;
   });
   $scope.chooseCandidate = function(cid){
+    
     var validID = ["5","6","7"];
     
     if(validID.indexOf(cid)!== -1){
@@ -144,94 +164,157 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
       }else{
           $scope.sidebar = value;
       }
-  }
+  };
+
+
+
+  
 
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
-
+  
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
   };
   DataService.getData('candidate').then(function(data){
-      $scope.candidate = data;
+      $scope.candidates = data;
   });
-
-}]);
-app.controller('CandidateCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', function ($scope, DataService, $location, $sce, $routeParams){
-
-  $scope.go = function(path){
-      $("body").scrollTop(0);
-      $location.path(path);
+  $scope.selectedCollectionMenu = 'all';
+  $scope.isCollectionMenuSelected = function(value){
+      return $scope.selectedCollectionMenu === value;
   };
-
-
-  DataService.getData('policy').then(function(data){
-      var validID = ["5","6","7"];
-      var cid = $routeParams.cid;
-
-      if(validID.indexOf($routeParams.cid)!== -1){
-        $scope.policy = Object.keys(data[cid]).map(function(o){ return data[cid][o];});
-
-      }else{
-        $location.path('/');
-      }
-
-  });
-
-
-  DataService.getData('candidate').then(function(data){
-      var validID = ["5","6","7"];
-      var cid = $routeParams.cid;
-
-      if(validID.indexOf($routeParams.cid)!== -1){
-        $scope.candidate = data[cid];
-      }else{
-        $location.path('/');
-      }
-
-  });
-
-
-  $scope.previousCandidate = function(){
-    //console.log("pre"+$routeParams.cid);
-    var cid = parseInt($routeParams.cid)-1;
-    if(cid < 5)
-       cid = (cid % 3) + 6;
-    $location.path('/policy/'+cid);
-
+  $scope.setCollectionMenuitem = function(value){
+      $scope.selectedCollectionMenu = value;
   };
-  $scope.nextCandidate = function(){
-    //console.log("next"+$routeParams.cid);
-    var cid = parseInt($routeParams.cid)+1;
+  $scope.persons = [
+  { 
+    "name":"蔡英文",
+    "answered":20,
+    "latest":"12/14",
+    "deadline" : "12/31"
 
-    if(cid > 7)
-       cid = (cid % 3) + 3;
+  },
+  { 
+    "name":"吳敦義",
+    "answered":3,
+    "latest":"10/01"
+  },
+  { 
+    "name":"朱立倫",
+    "answered":10,
+    "latest":"11/28",
+    "deadline" : "12/31"
+  },
+  { 
+    "name":"柯文哲",
+    "answered":43,
+    "latest":"9/28"
+  },
+  { 
+    "name":"賴清德",
+    "answered":3,
+    "latest":"7/01"
+  },
+  { 
+    "name":"陳菊",
+    "answered":12,
+    "latest":"6/17"
+  },
+  { 
+    "name":"林佳龍",
+    "answered":1,
+    "latest":"5/4"
+  }];
 
-    $location.path('/policy/'+cid);
-
-  };
-
+  $scope.groups = [
+  { 
+    "name":"總統參選人",
+    "answered":1,
+    "latest":"5/4"
+  }
+  ];
 
 }]);
 
-app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', function ($scope, DataService, $location, $sce, $routeParams){
 
+app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
+
+  $scope.order = 'signatures_count';
+  
+
+  $scope.toggleQuestion = function(qid){
+    $scope.questionToggled = true;
+    if($scope.focusQuestion === qid){
+        $scope.focusQuestion = false;
+        
+    }else{
+        $scope.focusQuestion = qid;
+        $location.hash(qid);
+    }
+
+  };
+  
+  // change route without reload the page
+  var lastRoute = $route.current;
+  $scope.$on('$locationChangeSuccess', function(event) {
+      if($scope.questionToggled){
+          $route.current = lastRoute;
+          $scope.questionToggled = false;
+      }
+  });
+  
+
+  if($location.hash()) {// has is question id
+     $scope.focusQuestion = $location.hash();
+  }
+  
+  $scope.toggleSignFilter = function () {
+      $scope.signFilter = !$scope.signFilter;
+  };
 
   DataService.getData('candidate').then(function(data){
-      var validID = ["5","6","7"];
+      
       var cid = $routeParams.cid;
+      console.log(cid);
 
-      if(validID.indexOf($routeParams.cid)!== -1){
+      if(data[cid]){
         $scope.candidate = data[cid];
 
-      }else{
-        $location.path('/');
       }
 
   });
+
+  DataService.getData('user_signatures').then(function(data){
+     $scope.signatures = data;
+
+  });
+  $scope.hasSigned = function (qid) {
+      return $scope.signatures[qid];
+  };
+  $scope.sign = function(qid) {
+      $scope.signatures[qid] = true;
+  };
+  
+
+  $scope.showLoginTip = function () {
+    
+    $("#notification").text("請先登入");
+    setTimeout(function(){
+      $("#notification").addClass("notification_show");
+      setTimeout(function(){
+          $("#notification").removeClass("notification_show");
+
+      },2500);
+
+    },100);
+
+  };
 
   $scope.previousPolicy = function(){
+    $scope.pageControlClicked = true;
+    $location.hash("");
+    
     var pid = parseInt($routeParams.pid)-1;
     if(pid < 1)
        pid = $scope.policyLength;
@@ -240,6 +323,9 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   };
   $scope.nextPolicy = function(){
+    $scope.pageControlClicked = true;
+    $location.hash("");
+  
     console.log($scope.policyLength);
     var pid = parseInt($routeParams.pid)+1;
     if(pid > $scope.policyLength)
@@ -255,28 +341,14 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   };
 
   DataService.getData('questions').then(function(data){
-      $scope.questions = [];
-      var cid = $routeParams.cid;
-      var pid = $routeParams.pid;
-      $scope.questionsObj = data[cid][pid];
-      for(var key in $scope.questionsObj){
-          $scope.questions.push($scope.questionsObj[key]);
-      }
+      $scope.questions = data;
   });
 
   DataService.getData('policy').then(function(data){
       var validID = ["5","6","7"];
       var cid = $routeParams.cid;
 
-      if($routeParams.pid){
-         if(validID.indexOf($routeParams.cid)!== -1){
-            $scope.policy = Object.keys(data[cid]).map(function(o){ return data[cid][o];});
-            $scope.policyLength = Object.keys(data[cid]).length;
-            $scope.currentPolicy = data[cid][$routeParams.pid];
-         }else{
-           $location.path('/');
-         }
-      }
+     
 
   });
 
@@ -284,38 +356,20 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
     return $scope.focusQuestion === qid;
   };
 
-  $scope.toggleQuestion = function(qid){
-    if($scope.focusQuestion === qid){
-        $scope.focusQuestion = false;
-        //$scope.focusQuestionTitle = null;
-
-    }else{
-        $scope.focusQuestion = qid;
-        //$scope.focusQuestionTitle = $scope.questionsObj[qid].title;
-    }
-
-  };
-
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
   };
-
-
   $scope.togglePolicy = function(){
     $scope.policyShowState = !$scope.policyShowState;
   };
   $scope.showPolicy = function(){
     return $scope.policyShowState;
   };
-
   $scope.resetFocus = function(){
       //console.log("RESET");
       $scope.policyShowState = false;
-      $scope.focusQuestion = false;
-      
+      $scope.focusQuestion = false;  
   };
-
-
   $scope.toogleAskQuestionForm = function(){
       if(!$scope.liveAskQuestionForm)
          $scope.liveAskQuestionForm = true;
@@ -326,12 +380,179 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   };
 
 }]);
+app.controller('GroupCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
+
+  $scope.order = 'signatures_count';
+  $scope.persons = [
+  { 
+    "name":"蔡英文",
+    "answered":20,
+    "latest":"12/14",
+    "deadline" : "12/31"
+
+  },
+  { 
+    "name":"吳敦義",
+    "answered":3,
+    "latest":"10/01"
+  }];
+  
+
+  $scope.toggleQuestion = function(qid){
+    $scope.questionToggled = true;
+    if($scope.focusQuestion === qid){
+        $scope.focusQuestion = false;
+        
+    }else{
+        $scope.focusQuestion = qid;
+        $location.hash(qid);
+    }
+
+  };
+  
+  // change route without reload the page
+  var lastRoute = $route.current;
+  $scope.$on('$locationChangeSuccess', function(event) {
+      if($scope.questionToggled){
+          $route.current = lastRoute;
+          $scope.questionToggled = false;
+      }
+  });
+  
+
+  if($location.hash()) {// has is question id
+     $scope.focusQuestion = $location.hash();
+  }
+  
+  $scope.toggleSignFilter = function () {
+      $scope.signFilter = !$scope.signFilter;
+  };
+
+  DataService.getData('candidate').then(function(data){
+      
+      var cid = $routeParams.cid;
+
+      if(data[cid]){
+        $scope.candidate = data[cid];
+
+      }
+
+  });
+
+  DataService.getData('user_signatures').then(function(data){
+     $scope.signatures = data;
+
+  });
+  $scope.hasSigned = function (qid) {
+      return $scope.signatures[qid];
+  };
+  $scope.sign = function(qid) {
+      $scope.signatures[qid] = true;
+  };
+  
+
+  $scope.showLoginTip = function () {
+    
+    $("#notification").text("請先登入");
+    setTimeout(function(){
+      $("#notification").addClass("notification_show");
+      setTimeout(function(){
+          $("#notification").removeClass("notification_show");
+
+      },2500);
+
+    },100);
+
+  };
+
+  $scope.previousPolicy = function(){
+    $scope.pageControlClicked = true;
+    $location.hash("");
+    
+    var pid = parseInt($routeParams.pid)-1;
+    if(pid < 1)
+       pid = $scope.policyLength;
+
+    $location.path('/policy/'+$routeParams.cid+'/'+pid);
+
+  };
+  $scope.nextPolicy = function(){
+    $scope.pageControlClicked = true;
+    $location.hash("");
+  
+    console.log($scope.policyLength);
+    var pid = parseInt($routeParams.pid)+1;
+    if(pid > $scope.policyLength)
+       pid = 1;
+
+    $location.path('/policy/'+$routeParams.cid+'/'+pid);
+
+  };
+
+  $scope.go = function(path){
+      $("body").scrollTop(0);
+      $location.path(path);
+  };
+
+  DataService.getData('questions').then(function(data){
+      $scope.questions = data;
+  });
+
+  DataService.getData('policy').then(function(data){
+      var validID = ["5","6","7"];
+      var cid = $routeParams.cid;
+
+     
+
+  });
+
+  $scope.showQuestion = function(qid){
+    return $scope.focusQuestion === qid;
+  };
+
+  $scope.toTrusted = function(html_code) {
+    return $sce.trustAsHtml(html_code);
+  };
+  $scope.togglePolicy = function(){
+    $scope.policyShowState = !$scope.policyShowState;
+  };
+  $scope.showPolicy = function(){
+    return $scope.policyShowState;
+  };
+  $scope.resetFocus = function(){
+      //console.log("RESET");
+      $scope.policyShowState = false;
+      $scope.focusQuestion = false;  
+  };
+  $scope.toogleAskQuestionForm = function(){
+      if(!$scope.liveAskQuestionForm)
+         $scope.liveAskQuestionForm = true;
+      $scope.showAskQuestionForm = !$scope.showAskQuestionForm;
+  };
+  $scope.deleteAskQuestionForm = function(){
+      $scope.liveAskQuestionForm = false;
+  };
+
+}]);
+
 app.controller('RankCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', function ($scope, DataService, $location, $sce, $routeParams){
 
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
   };
+
+  DataService.getData('candidate').then(function(data){
+      var validID = ["5","6","7"];
+      var cid = $routeParams.cid;
+
+      if(validID.indexOf($routeParams.cid)!== -1){
+        $scope.candidate = data[cid];
+      }else{
+        $location.path('/');
+      }
+
+  });
 
   DataService.getData('questions').then(function(data){
       $scope.questions = [];

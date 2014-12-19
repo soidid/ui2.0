@@ -1,25 +1,47 @@
+<div ng-controller="AuthCtrl">
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
 <div id="content">
+    <div id="page_content">
     <div class="page_wrapper">
-    	<img class="index_cover" src="images/cover.jpg">
-    </div>
-    <div class="page_wrapper color_yellow">
-    	<div class="wrapper color_yellow">
-          <div class="index_title">市長，給問嗎 x 蘋果日報 x 台北市長候選人 x 政策問答大亂鬥！</div>
-    	</div>
-    </div>
-
-
     <div class="wrapper">
-       <h3>遊戲規則說明</h3>
-    </div>
-
-    <div class="wrapper">
-    </div>
-    <div class="wrapper l_center">
-        <div ng-repeat="c in candidate" class="index_c_item md-whiteframe-z1" ng-click="go('policy/'+c.id)">
-        	<img ng-src="images/candidates/{{c.id}}.jpg">
+        <div class="person_collection_menu">
+            <div class="person_collection_menuitem" ng-class="{'person_collection_menuitem--active':isCollectionMenuSelected('collecting')}" ng-click="setCollectionMenuitem('collecting')">提問中</div>
+            <div class="person_collection_menuitem" ng-class="{'person_collection_menuitem--active':isCollectionMenuSelected('all')}" ng-click="setCollectionMenuitem('all')">全部</div>
         </div>
+
+        
+        <div class="person_collection">
+        <h2>政治人物</h2>
+        <a ng-repeat="person in persons" href="#/person/{{person.name}}"
+        ng-hide="isCollectionMenuSelected('collecting')&&!person.deadline">
+        <div class="person_item">
+            <img class="person_img" src="images/candidates/{{person.name}}.jpg">
+            <div class="person_name">{{person.name}}</div>
+            <div>累積回答：{{person.answered}} 題</div>
+            <div ng-hide="person.deadline">最新回答：{{person.latest}}</div>
+            <div ng-show="person.deadline">連署截止：{{person.deadline}}</div>
+
+        </div>
+        </a>
+        </div>
+        <hr/>
+        <div class="person_collection">
+        <h2>選舉</h2>
+        <a ng-repeat="person in groups" href="#/groups/{{person.name}}">
+        <div class="person_item">
+            <img class="person_img" src="images/candidates/{{person.name}}.jpg">
+            <div class="person_name">{{person.name}}</div>
+            <div>累積回答：{{person.answered}} 題</div>
+            <div>最新回答：{{person.latest}}</div>
+        </div>
+        </a>
+        </div>
+    </div><!-- end of wrapper -->
+
+    </div><!-- end of page wrapper -->
     </div>
-</div>
+    <div ng-include="'partials/footer.html'"></div>
+</div><!-- end of content -->
+
+</div><!-- end of auth -->
