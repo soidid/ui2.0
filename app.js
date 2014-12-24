@@ -40,7 +40,11 @@ app.config(['$routeProvider','$locationProvider',
       controller: 'PersonCtrl'
     }).
       when('/person/:cid/respond',{
-      templateUrl: 'partials/respond.html',
+      templateUrl: 'partials/person-respond.html',
+      controller: 'PersonCtrl'
+    }).
+      when('/person/:cid/about',{
+      templateUrl: 'partials/person-about.html',
       controller: 'PersonCtrl'
     }).
       when('/groups/:cid',{
@@ -341,7 +345,10 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   };
 
   DataService.getData('questions').then(function(data){
-      $scope.questions = data;
+      $scope.questions = [];
+      for(var key in data){
+        $scope.questions.push(data[key]);
+      }
   });
 
   DataService.getData('policy').then(function(data){
