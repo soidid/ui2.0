@@ -246,13 +246,24 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   $scope.order = 'signatures_count';
 
-  
+ 
   $scope.toggleToolbar = function () {
     $scope.showtoolbar = !$scope.showtoolbar;
+    $scope.showinfo = false;
+    $scope.showsearch = false;
   };
 
   $scope.toggleInfo = function () {
     $scope.showinfo = !$scope.showinfo;
+    $scope.showtoolbar = false;
+    $scope.showsearch = false;
+
+  };
+
+  $scope.toggleSearch = function () {
+    $scope.showsearch = !$scope.showsearch;
+    $scope.showtoolbar = false;
+    $scope.showinfo = false;
   };
 
 

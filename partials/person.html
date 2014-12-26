@@ -32,6 +32,7 @@
           <div class="person_intro_menuitem person_intro_menuitem--active">問答牆</div>
           <div class="person_intro_menuitem" ng-click="toggleInfo()"><i class="fa fa-question" ng-class="{'person_toolbar_control--active':showinfo}" ></i></div>
           <div class="person_intro_menuitem" ng-click="toggleToolbar()"><i class="fa fa-cog" ng-class="{'person_toolbar_control--active':showtoolbar}" ></i></div>
+          <div class="person_intro_menuitem" ng-click="toggleSearch()"><i class="fa fa-search" ng-class="{'person_toolbar_control--active':showsearch}" ></i></div>
           <!--<div class="person_intro_menuitem" ng-click="showsidebar('toggle')">更多</div>-->
       </div>
   </div><!-- end of person_intro -->
@@ -105,6 +106,13 @@
         <i class="fa fa-clock-o"></i>
       </a>
       </div>
+  </div>
+
+  <!-- search -->
+  <div class="person_toolbar" ng-class="{'person_toolbar--hide':!showsearch}">
+    <div class="nav_search_inner">
+      <input class="fs" ng-model="query"><i class="fa fa-search"></i>
+    </div>
   </div>
 
   <!-- * * * * * *  -->

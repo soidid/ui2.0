@@ -826,6 +826,7 @@ a.nav_item_sidebar:hover {
   position: absolute;
   left: 10px;
   top:10px;
+  color: white;
 }
 @media screen and (max-width: 800px){
   .nav_search {
@@ -1407,13 +1408,20 @@ input:checked + .slider::before {
   color: rgb(53,55,54);
 }
 .person_intro_menuitem {
-  width: 90px;
+  width: 100px;
   display: inline-block;
   margin: 8px 0px 8px 0px;
   text-align: center;
   border-right: 1px solid rgb(240,240,240);
   cursor: pointer;
 }
+@media screen and (max-width:400px) {
+  .person_intro_menuitem {
+    width: 70px;
+
+  }
+}
+
 .person_intro_menuitem--active {
   box-shadow: 0px 18px 0px -10px #4DB6AC;
 }
