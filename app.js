@@ -245,7 +245,16 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
 
   $scope.order = 'signatures_count';
+
   
+  $scope.toggleToolbar = function () {
+    $scope.showtoolbar = !$scope.showtoolbar;
+  };
+
+  $scope.toggleInfo = function () {
+    $scope.showinfo = !$scope.showinfo;
+  };
+
 
   $scope.toggleQuestion = function(qid){
     $scope.questionToggled = true;

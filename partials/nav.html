@@ -3,28 +3,28 @@
 </div>
 
 <div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}">
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >{{candidate.name}}給問 #3</a>
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >{{candidate.name}}給問 #2</a>
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >{{candidate.name}}給問 #1</a>
+  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >首頁</a>
+  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >我的訂閱</a>
+  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >關於</a>
 
 
 </div>
 
 <header class="md-whiteframe-z1">
 
-  <!--<div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>-->
+  <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
   <!-- <img src="images/watchout_logo.svg" id="watchout_nav_logo"> -->
-  <a href="/ui2.0"><div class="nav_list_home"><i class="fa fa-flask"></i> 給問 2.0</div></a>
+  <div class="nav_list_home"><div class="nav_list_home_btn"><a href="/ui2.0"><i class="fa fa-flask"></i> 給問 2.0</a></div></div>
 
   <div class="nav_list_function">
 
     <!-- toggle control -->
-    <div id="toggleCtrl">
+    <!--<div id="toggleCtrl">
         <div class="slider_wrap">
             <input type="checkbox" id="s1" ng-click="toggleSignFilter()"/>
             <label class="slider" for="s1"></label>
         </div>
-    </div>
+    </div>-->
 
     
     <!-- 登入選單 -->
@@ -37,11 +37,11 @@
         </div>
     </div>
   </div>
-  <div class="nav_search">
+  <!--<div class="nav_search">
     <div class="nav_search_inner">
        <input class="fs" ng-model="query"><i class="fa fa-search"></i>
     </div>
-  </div>
+  </div>-->
 </header>
 
 

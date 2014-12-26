@@ -16,41 +16,37 @@
   
   <!-- ......... -->      
   <div class="person_intro">
-      
-      
       <div class="person_intro_info">
         <img class="person_intro_img" src="images/candidates/{{candidate.name}}.jpg">
         <div class="person_intro_right">
             <div class="person_intro_name_area">
-              <div class="person_intro_name">{{candidate.name}}</div>
+              <div class="person_intro_name">{{candidate.name}}<a id="person_intro_follow"><i class="fa fa-rss"></i></a></div>
               <div class="person_intro_title">{{candidate.title}}</div>
             </div>
             
-            <a class="button" id="person_intro_follow"><i class="fa fa-rss"></i> 訂閱</a>
+            
         </div>
       </div>
 
       <div class="person_intro_menubar">
-          <div class="person_intro_menuitem person_intro_menuitem--active">提問</div>
-          <a href="#/person/{{candidate.name}}/respond"><div class="person_intro_menuitem">回答</div></a>
-          <div class="person_intro_menuitem">說明</div>
-          <div class="person_intro_menuitem" ng-click="showsidebar('toggle')">更多</div>
+          <div class="person_intro_menuitem person_intro_menuitem--active">問答牆</div>
+          <div class="person_intro_menuitem" ng-click="toggleInfo()"><i class="fa fa-question" ng-class="{'person_toolbar_control--active':showinfo}" ></i></div>
+          <div class="person_intro_menuitem" ng-click="toggleToolbar()"><i class="fa fa-cog" ng-class="{'person_toolbar_control--active':showtoolbar}" ></i></div>
+          <!--<div class="person_intro_menuitem" ng-click="showsidebar('toggle')">更多</div>-->
       </div>
-      
-  
-  </div>
-  <!-- ......... -->
+  </div><!-- end of person_intro -->
 
-      <span ng-if="!candidate.due">
+  <!-- ASK QUESTION BUTTON -->
+  <span ng-if="!candidate.due">
           <!-- ASK QUESTION -->
           <div class="ask_item" ng-click="toogleAskQuestionForm()" ng-if="user&&!liveAskQuestionForm"><i class="fa fa-plus ask_icon"></i></div>
 
           <!-- ASK QUESTION (未登入)-->
           <div class="ask_item" ng-click="showLoginTip()" ng-if="!user"><i class="fa fa-plus ask_icon"></i></div>
-      </span>
+  </span>
 
-      <!-- ASK QUESTION FORM -->
-      <div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="liveAskQuestionForm">
+  <!-- ASK QUESTION FORM -->
+  <div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="liveAskQuestionForm">
           <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i> 對{{candidate.name}}的政策提問：
               <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-minus"></i></div>
           </div>
@@ -67,43 +63,66 @@
                 <span class="ask_form_trash" ng-click="deleteAskQuestionForm()"><i class='fa fa-trash-o'></i></span>
               </div>
           </div>
-      </div>
   </div>
+  
+
+
+
   <!-- Question -->
-  <div class="wrapper">
+  
   
   <!-- * * * * * *  -->
-  <div class="person_toolbar md-whiteframe-z1">
-      <div class="question_menu">
-        <div class="question_menu_meta">共有 4 題</div>
-      
-        <div class="sorting_menu">
-          <label class="radio" ng-click="order='signatures_count'">
-             <input id="radio1" type="radio" name="radios" checked>
-             <span class="outer"><span class="inner"></span></span>
-             <span class="radio_text">票數排序</span>
-          </label>
-          <label class="radio" ng-click="order='post_timestamp'">
-          <input id="radio2" type="radio" name="radios" >
-             <span class="outer"><span class="inner"></span></span>
-             <span class="radio_text">時間排序</span>
-          </label>
-        </div>
-      </div>
 
-  
+  <!-- About Info -->
+  <div class="person_toolbar" ng-class="{'person_toolbar--hide':!showinfo}">
+    <div class="person_toolbar_section">蔡英文 01/28 Live 直播給問</div>
+    <ul>
+      <li>直播時間：2015 / 01 / 28 21:00</li>
+      <li>連署截止：2015 / 01 / 27 21:00</li>
+      <li>回答順序：不分主題，依照連署票數高低。</li>
+    </ul>
   </div>
+  
+  <!-- Question Filter -->
+  <div class="person_toolbar" ng-class="{'person_toolbar--hide':!showtoolbar}">
+      <div class="person_toolbar_left_sets">
+      <a class="button--square person_toolbar_item inactive">
+        01/28 Live 直播給問 <i class="fa fa-caret-down"></i>
+      </a>
+      <a class="button--square person_toolbar_item inactive">
+        所有問答 <i class="fa fa-caret-down"></i>
+      </a>
+      <a class="button--square person_toolbar_item inactive">
+        新經濟政策 <i class="fa fa-caret-down"></i>
+      </a>
+      </div>
+      
+      <div class="person_toolbar_order_sets">
+      <a class="button--square" ng-class="{'inactive':order!=='signatures_count'}" ng-click="order='signatures_count'">
+        <i class="fa fa-thumbs-o-up"></i>
+      </a>
+      <a class="button--square" ng-class="{'inactive':order!=='post_timestamp'}" ng-click="order='post_timestamp'">
+        <i class="fa fa-clock-o"></i>
+      </a>
+      </div>
+  </div>
+
   <!-- * * * * * *  -->
 
 
 
-
+  <div class="person_page_q_collection">
   <div ng-repeat="q in questions | filter:query | orderBy: order : true" ng-class="{'md-whiteframe-z1':showQuestion(q.id),'q_item_active':showQuestion(q.id)}" class="q_item" ng-click="$event.stopPropagation()" ng-hide="signFilter && !hasSigned(q.id)" id="q_{{q.id}}" >
 
     <div class="q_title l_inline" ng-class="{'q_title_active':showQuestion(q.id)}" ng-click="toggleQuestion(q.id)">
       <div class="q_order l_inline">{{$index+1}}</div>
       <div class="q_vote l_inline">{{q.signatures_count | number:0}}</div>
-      {{q.title | limitTo:40}}{{(q.title).length>40?'...':''}}
+     
+      <div class="q_title_response" ng-if="q.responses"><div class="q_title_response_text">{{candidate.name}}回答</div></div>
+
+
+      {{q.title | limitTo:80}}{{(q.title).length>80?'...':''}}
+      <div class="q_vote_mobile"><i class="fa fa-thumbs-o-up"></i> {{q.signatures_count | number:0}} <span ng-if="q.heart"><i class="fa fa-star"></i> {{q.heart | number:0}}</span></div>
 
     <!-- function tab goes here -->
         <div class="q_function l_inline">
@@ -111,28 +130,56 @@
           <span ng-if="showQuestion(q.id)"><i class="fa fa-angle-double-up"></i></span>
         </div>
     <!-- ...................... -->
-        <span class="q_function_sign" ng-class="{'q_function_signed':hasSigned(q.id),'q_function_unsigned':!hasSigned(q.id)}"><i class="fa fa-bullhorn"></i> </span>
+        <!--<span class="q_function_sign" ng-class="{'q_function_signed':hasSigned(q.id),'q_function_unsigned':!hasSigned(q.id)}"><i class="fa fa-bullhorn"></i> </span>-->
      <!-- ...................... -->
     </div>
 
     <div class="q_content" ng-if="showQuestion(q.id)">
-        <div class="q_title_mobile_inner">{{q.title}}</div>
-        <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
-        <div class="q_postmeta">提問人：someid / 提問時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
-        <div class="q_action">
-            <span ng-if="!candidate.due">
-            <a class="button unsign" ng-click="sign(q.id)" ng-hide="hasSigned(q.id)"><i class="fa fa-bullhorn"></i> 連署</a>
-            <a class="button" ng-show="hasSigned(q.id)"><i class="fa fa-bullhorn"></i> 已連署</a>
-            </span>
-            <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
+        <!--<div class="q_title_mobile_inner">{{q.title}}</div>-->
+        
+        <!-- DISPLAY questions -->
+        <div ng-if="!q.responses">
+            <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
+            <div class="q_postmeta">提問人：someid / 提問時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
+            <div class="q_action">
+                <span ng-if="!candidate.due">
+                <a class="button unsign" ng-click="sign(q.id)" ng-hide="hasSigned(q.id)"><i class="fa fa-thumbs-o-up"></i> 連署</a>
+                <a class="button" ng-show="hasSigned(q.id)"><i class="fa fa-bullhorn"></i> 已連署</a>
+                </span>
+                <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
+            </div>
+        </div>
+        <!-- DISPLAY questions -->
+        <div ng-if="q.responses">
+            <div class="q_responses_web">
+              <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
+              <div class="q_postmeta">提問人：someid / 提問時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
+            </div>
+
+            <div class="q_title_response_web"><img class="q_title_response_web_img" src="images/candidates/{{candidate.name}}.jpg"><div class="q_title_response_web_text ">{{candidate.name}}回答</div></div>
+            <p class="q_text" ng-repeat="p in q.responses">{{p}}</p>
+            <div class="q_postmeta">回答時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
+            <div class="q_action">
+                <a class="button goodrating"><i class="fa fa-star"></i> 好評</a>
+                <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
+            </div>
+
+            <div class="q_responses_otherreply">也回答了這個問題</div>
+            <img class="q_responses_otherreply_img" src="images/candidates/吳敦義.jpg">
+            <img class="q_responses_otherreply_img" src="images/candidates/朱立倫.jpg">
+
+
+
         </div>
 
     </div>
   </div>
+  </div>
   
   <div class="question_bottom">
-     <a class="button"><i class="fa fa-bullhorn"></i> 更多</a>
+     <a class="button">更多</a>
   </div>
+
   </div><!-- wrapper -->
   </div>
 <div ng-include="'partials/footer.html'"></div>
