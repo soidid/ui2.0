@@ -652,12 +652,12 @@ a.button--wide {
   background: rgba(0,0,0,0.5);
   height: 100%;
   width: 100%;
-  z-index: 400;
+  z-index: 100;
   overflow: hidden;
   position: absolute;
   left:0px;
   top: 50px;
-  pointer-events: none;
+  
  
 }
 #sidebar-container {
