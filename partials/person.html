@@ -63,13 +63,22 @@
             
         </div>
       </div>
-
+<!--
       <div class="person_intro_menubar">
           <div class="person_intro_menuitem person_intro_menuitem--active">問答牆</div>
           <div class="person_intro_menuitem" ng-click="toggleInfo()"><i class="fa fa-question" ng-class="{'person_toolbar_control--active':showinfo}" ></i></div>
           <div class="person_intro_menuitem" ng-click="toggleToolbar()"><i class="fa fa-cog" ng-class="{'person_toolbar_control--active':showtoolbar}" ></i></div>
           <div class="person_intro_menuitem" ng-click="toggleSearch()"><i class="fa fa-search" ng-class="{'person_toolbar_control--active':showsearch}" ></i></div>
-          <!--<div class="person_intro_menuitem" ng-click="showsidebar('toggle')">更多</div>-->
+          
+      </div>
+-->
+      <div class="person_intro_menubar">
+      <a class="button--wide" ng-class="{'inactive':order!=='signatures_count'}" ng-click="order='signatures_count'">
+        <i class="fa fa-thumbs-o-up"></i> 票數排序
+      </a>
+      <a class="button--wide" ng-class="{'inactive':order!=='post_timestamp'}" ng-click="order='post_timestamp'">
+        <i class="fa fa-clock-o"></i> 時間排序
+      </a>
       </div>
   </div><!-- end of person_intro -->
 
