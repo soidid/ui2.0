@@ -3,13 +3,13 @@
 
 <div ng-include="'partials/nav.html'"></div>
 <!-- Focus Questioin -->
-<div class="q_item_remove" ng-click="toggleQuestion(false)" ng-if="focusQuestion">x</div>
+
 
 <div id="focus-question" ng-class="{'show':focusQuestion, 'hide':focusQuestion===false}">
 
   <div class="q_content">
         <!-- DISPLAY questions -->
-        <h3>{{currentQ.title}}</h3>
+        <div class="q_title_focus">{{currentQ.title}}</div>
         <p class="q_text" ng-repeat="p in currentQ.content">{{p}}</p>
         <div class="q_postmeta">提問人：someid / 提問時間：{{currentQ.post_timestamp | date:'MM-dd hh:mm'}}</div>
         <div class="q_action">
@@ -22,7 +22,7 @@
         
         <!-- DISPLAY responses -->
         <div ng-if="currentQ.responses">
-            <div class="q_title_response_web"><img class="q_title_response_web_img" src="images/candidates/{{candidate.name}}.jpg"><div class="q_title_response_web_text ">{{candidate.name}}回答</div></div>
+            <div class="q_title_response"><img class="q_title_response_web_img" src="images/candidates/{{candidate.name}}.jpg"><div class="q_title_response_web_text ">{{candidate.name}}回答</div></div>
             <p class="q_text" ng-repeat="p in currentQ.responses">{{p}}</p>
             <div class="q_postmeta">回答時間：{{currentQ.post_timestamp | date:'MM-dd hh:mm'}}</div>
             <div class="q_action">

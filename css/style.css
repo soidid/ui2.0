@@ -227,12 +227,10 @@ input{
   width: 20px;
   margin-left: 10px;
 }
-.q_title_mobile_inner {
+.q_title_focus {
   padding-left: 10px;
   font-size: 20px;
   font-weight: 700;
-  display: none;
-
 }
 .q_vote_mobile {
   display: inline-block;
@@ -351,10 +349,7 @@ transition-duration: .5s;
 .q_title_response {
   margin-bottom: 10px;
 }
-.q_title_response_web {
-  margin: 10px;
 
-}
 .q_title_response_web_text {
   vertical-align: top;
   padding-top: 20px;
@@ -380,17 +375,8 @@ transition-duration: .5s;
   padding-bottom: 15px;
   border-bottom: 1px solid rgb(220,220,220);
 }
-@media screen and (max-width: 600px){
-  .q_title_response_web, .q_responses_web {
-    display: none;
-  }
-}
-@media screen and (min-width: 600px){
-  .q_title_response {
-    display: none;
-    overflow: hidden;
-  }
-}
+
+
 .q_responses_otherreply {
   text-align: center;
   padding: 10px 5px;

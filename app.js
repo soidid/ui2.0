@@ -322,7 +322,8 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   });
   $scope.hasSigned = function (qid) {
-      return $scope.signatures[qid];
+      if(qid)
+         return $scope.signatures[qid];
   };
   $scope.sign = function(qid) {
       $scope.signatures[qid] = true;

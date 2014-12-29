@@ -7,7 +7,10 @@
   <a class="nav_item_sidebar" ng-click="showsidebar(false)" >我的訂閱</a>
   <a class="nav_item_sidebar" ng-click="showsidebar(false)" >關於</a>
 </div>
-<header class="md-whiteframe-z1" ng-show="focusQuestion"></header>
+<header class="md-whiteframe-z1" ng-show="focusQuestion">
+  <div class="q_item_remove" ng-click="toggleQuestion(false)" ng-if="focusQuestion">x</div>
+  
+</header>
 <header class="md-whiteframe-z1 nav_background" ng-show="!focusQuestion">
 
   <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
