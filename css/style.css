@@ -420,9 +420,36 @@ transition-duration: .5s;
 
   background: white;
 }
+.q_item_remove {
+  border: 1px solid rgb(220,220,220);
+  color: rgb(180,180,180);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 6px;
+  text-align: center;
+}
 .q_item_active {
+  /*
   margin: 10px auto;
   box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+  */
+
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  min-height: 500px;
+  
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+
+  z-index: 10;
+
+ 
 }
 .q_text {
   padding: 0px 20px 0px 10px;
