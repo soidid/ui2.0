@@ -269,14 +269,22 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   $scope.toggleQuestion = function(qid){
     $scope.questionToggled = true;
-    if($scope.focusQuestion === qid){
+
+    if(qid === false){
+      $scope.focusQuestion = false;
+
+    }else{
+
+      if($scope.focusQuestion === qid){
         $scope.focusQuestion = false;
         
-    }else{
+      }else{
         $scope.focusQuestion = qid;
+        $scope.currentQ = $scope.questionsObj[qid];
         $location.hash(qid);
+      }
     }
-
+    
   };
   
   // change route without reload the page
@@ -365,6 +373,7 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   };
 
   DataService.getData('questions').then(function(data){
+      $scope.questionsObj = data;
       $scope.questions = [];
       for(var key in data){
         $scope.questions.push(data[key]);

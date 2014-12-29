@@ -2,6 +2,42 @@
 <div ng-controller="NavCtrl">
 
 <div ng-include="'partials/nav.html'"></div>
+<!-- Focus Questioin -->
+<div class="q_item_remove" ng-click="toggleQuestion(false)" ng-if="focusQuestion">x</div>
+
+<div id="focus-question" ng-class="{'show':focusQuestion, 'hide':focusQuestion===false}">
+
+  <div class="q_content">
+        <!-- DISPLAY questions -->
+        <h3>{{currentQ.title}}</h3>
+        <p class="q_text" ng-repeat="p in currentQ.content">{{p}}</p>
+        <div class="q_postmeta">提問人：someid / 提問時間：{{currentQ.post_timestamp | date:'MM-dd hh:mm'}}</div>
+        <div class="q_action">
+            <span ng-if="!candidate.due">
+            <a class="button unsign" ng-click="sign(currentQ.id)" ng-hide="hasSigned(currentQ.id)"><i class="fa fa-thumbs-o-up"></i> 連署</a>
+            <a class="button" ng-show="hasSigned(currentQ.id)"><i class="fa fa-bullhorn"></i> 已連署</a>
+            </span>
+            <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
+        </div>
+        
+        <!-- DISPLAY responses -->
+        <div ng-if="currentQ.responses">
+            <div class="q_title_response_web"><img class="q_title_response_web_img" src="images/candidates/{{candidate.name}}.jpg"><div class="q_title_response_web_text ">{{candidate.name}}回答</div></div>
+            <p class="q_text" ng-repeat="p in currentQ.responses">{{p}}</p>
+            <div class="q_postmeta">回答時間：{{currentQ.post_timestamp | date:'MM-dd hh:mm'}}</div>
+            <div class="q_action">
+                <a class="button goodrating"><i class="fa fa-star"></i> 好評</a>
+                <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
+            </div>
+
+            <!--<div class="q_responses_otherreply">也回答了這個問題</div>
+            <img class="q_responses_otherreply_img" src="images/candidates/吳敦義.jpg">
+            <img class="q_responses_otherreply_img" src="images/candidates/朱立倫.jpg">
+            -->
+        </div>
+        
+    </div>
+</div>
 
 <!-- LEFT & RIGHT BUTTON -->
 <div class="page_button page_left" ng-click="previousPolicy()"><i class="fa fa-chevron-left"></i></div>
@@ -143,42 +179,7 @@
      <!-- ...................... -->
     </div>
 
-    <div class="q_content" ng-if="showQuestion(q.id)">
-        <!--<div class="q_title_mobile_inner">{{q.title}}</div>-->
-        
-        <!-- DISPLAY questions -->
-        
-            <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
-            <div class="q_postmeta">提問人：someid / 提問時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
-            <div class="q_action">
-                <span ng-if="!candidate.due">
-                <a class="button unsign" ng-click="sign(q.id)" ng-hide="hasSigned(q.id)"><i class="fa fa-thumbs-o-up"></i> 連署</a>
-                <a class="button" ng-show="hasSigned(q.id)"><i class="fa fa-bullhorn"></i> 已連署</a>
-                </span>
-                <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
-            </div>
-        
-        <!-- DISPLAY questions -->
-        <div ng-if="q.responses">
-            
-
-            <div class="q_title_response_web"><img class="q_title_response_web_img" src="images/candidates/{{candidate.name}}.jpg"><div class="q_title_response_web_text ">{{candidate.name}}回答</div></div>
-            <p class="q_text" ng-repeat="p in q.responses">{{p}}</p>
-            <div class="q_postmeta">回答時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
-            <div class="q_action">
-                <a class="button goodrating"><i class="fa fa-star"></i> 好評</a>
-                <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
-            </div>
-
-            <!--<div class="q_responses_otherreply">也回答了這個問題</div>
-            <img class="q_responses_otherreply_img" src="images/candidates/吳敦義.jpg">
-            <img class="q_responses_otherreply_img" src="images/candidates/朱立倫.jpg">
-            -->
-
-
-        </div>
-
-    </div>
+    
   </div>
   </div>
   

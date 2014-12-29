@@ -127,7 +127,6 @@ hr {
 
 header {
   z-index: 100;
-  background: #009688;
   color: white;
   height: 50px;
   width: 100%;
@@ -136,6 +135,9 @@ header {
   box-sizing: border-box;
   padding: 6px;
 
+}
+.nav_background {
+  background: #009688;
 }
 .fs {
   background: rgb(200,200,200);
@@ -421,7 +423,6 @@ transition-duration: .5s;
   background: white;
 }
 .q_item_remove {
-  border: 1px solid rgb(220,220,220);
   color: rgb(180,180,180);
   width: 40px;
   height: 40px;
@@ -429,6 +430,11 @@ transition-duration: .5s;
   cursor: pointer;
   padding: 6px;
   text-align: center;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  z-index: 1000;
+  background: white;
 }
 .q_item_active {
   /*
@@ -439,7 +445,7 @@ transition-duration: .5s;
   position: absolute;
   top: 0px;
   width: 100%;
-  min-height: 500px;
+  min-height: 400px;
   
   -moz-transition: .2s;
   -ms-transition: .2s;
@@ -455,14 +461,10 @@ transition-duration: .5s;
   padding: 0px 20px 0px 10px;
 }
 .q_content {
-  position: relative;
-  padding-left: 15px;
+  text-align: left;
+  padding: 5px 10px;
 }
-@media screen and (max-width:400px){
-  .q_content {
-    padding: 0px;
-  }
-}
+
 .q_pending_candidates {
   margin: 20px auto;
 }
@@ -649,7 +651,7 @@ a.button.goodrating{
 /* sidebar
 /* ------------------------------------------------------------ */
 
-#sidebar-container{
+#sidebar-container, #focus-question{
   z-index: 400;
   width: 100%;
   height: 0px;
@@ -662,6 +664,11 @@ a.button.goodrating{
   top: 50px;
   height: 100%;
 
+}
+#focus-question.show{
+  top: 50px;
+  height: 100%;
+  overflow: scroll;
 }
 a.nav_item_sidebar {
   display: block;
