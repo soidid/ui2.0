@@ -2,12 +2,19 @@
 <div ng-controller="NavCtrl">
 
 <div ng-include="'partials/nav.html'"></div>
+<div class="order_control">
+  <a class="button--wide" ng-class="{'inactive':order!=='signatures_count'}" ng-click="order='signatures_count'"><i class="fa fa-thumbs-o-up"></i> 熱門</a>
+  <a class="button--wide" ng-class="{'inactive':order!=='post_timestamp'}" ng-click="order='post_timestamp'"><i class="fa fa-clock-o"></i> 最新</a>
+</div>
 <!-- Focus Questioin -->
 
 
 <div id="focus-question" ng-class="{'show':focusQuestion, 'hide':focusQuestion===false}">
-
+  <div class="q_content_nav">
+      <div class="q_content_nav_remove" ng-click="toggleQuestion(q.id)"><i class="fa fa-chevron-left"></i></div>
+  </div>
   <div class="q_content">
+      
         <!-- DISPLAY questions -->
         <div class="q_title_focus">{{currentQ.title}}</div>
         <p class="q_text" ng-repeat="p in currentQ.content">{{p}}</p>
@@ -36,7 +43,7 @@
             -->
         </div>
         
-    </div>
+  </div>
 </div>
 
 <!-- LEFT & RIGHT BUTTON -->
@@ -56,7 +63,7 @@
         <img class="person_intro_img" src="images/candidates/{{candidate.name}}.jpg">
         <div class="person_intro_right">
             <div class="person_intro_name_area">
-              <div class="person_intro_name">{{candidate.name}}<a id="person_intro_follow"><i class="fa fa-rss"></i></a></div>
+              <div class="person_intro_name">{{candidate.name}}</div>
               <div class="person_intro_title">{{candidate.title}}</div>
             </div>
             
@@ -72,14 +79,7 @@
           
       </div>
 -->
-      <div class="person_intro_menubar">
-      <a class="button--wide" ng-class="{'inactive':order!=='signatures_count'}" ng-click="order='signatures_count'">
-        <i class="fa fa-thumbs-o-up"></i> 票數排序
-      </a>
-      <a class="button--wide" ng-class="{'inactive':order!=='post_timestamp'}" ng-click="order='post_timestamp'">
-        <i class="fa fa-clock-o"></i> 時間排序
-      </a>
-      </div>
+     
   </div><!-- end of person_intro -->
 
   <!-- ASK QUESTION BUTTON -->
@@ -166,9 +166,9 @@
 
   <div class="person_page_q_collection">
   <div ng-repeat="q in questions | filter:query | orderBy: order : true" ng-class="{'md-whiteframe-z1':showQuestion(q.id),'q_item_active':showQuestion(q.id)}" class="q_item" ng-click="$event.stopPropagation()" ng-hide="signFilter && !hasSigned(q.id)" id="q_{{q.id}}" >
-    <div class="q_item_remove" ng-if="showQuestion(q.id)" ng-click="toggleQuestion(q.id)">x</div>
+    
 
-    <div class="q_title l_inline" ng-class="{'q_title_active':showQuestion(q.id)}" ng-click="toggleQuestion(q.id)">
+    <div class="q_title l_inline" ng-click="toggleQuestion(q.id)">
       <div class="q_order l_inline">{{$index+1}}</div>
       <div class="q_vote l_inline">{{q.signatures_count | number:0}}</div>
      

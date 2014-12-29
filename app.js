@@ -136,9 +136,8 @@ app.controller('AuthCtrl',['$scope', 'DataService', '$location', function($scope
    
   };
   $scope.toggleUserMenu = function(){
-    if($scope.user){
-       $scope.showUserMenu = !$scope.showUserMenu;
-    }
+    $scope.showUserMenu = !$scope.showUserMenu;
+    
   };
   DataService.getData('candidate').then(function(data){
       $scope.candidates = data;
@@ -184,7 +183,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   DataService.getData('candidate').then(function(data){
       $scope.candidates = data;
   });
-  $scope.selectedCollectionMenu = 'all';
+  $scope.selectedCollectionMenu = 'collecting';
   $scope.isCollectionMenuSelected = function(value){
       return $scope.selectedCollectionMenu === value;
   };

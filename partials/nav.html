@@ -1,26 +1,24 @@
 <div class="notification_wrapper">
 <div id="notification" class="notification_hide"></div>
 </div>
-
-<div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}">
+<div id="sidebar-shadow" ng-show="sidebar"></div>
+<div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="showsidebar(false)">
+  <div class="sidebar-container_left">
   <!--<a class="nav_item_sidebar" ng-click="showsidebar(false)" >首頁</a>-->
-  <a class="nav_item_sidebar nav_item_sidebar--gray" ng-click="showsidebar(false)" >{{candidate.name}}</a>
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >01/28 Live 直播給問 <i class="fa fa-caret-down"></i></a>
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >所有問答 <i class="fa fa-caret-down"></i></a>
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >新經濟政策 <i class="fa fa-caret-down"></i></a>
-  <a class="nav_item_sidebar" ng-click="showsidebar(false)" >搜尋 <i class="fa fa-search"></i></a>
+  <a class="nav_item_sidebar--left" ng-click="showsidebar(false)" href="/ui2.0">首頁</a>
+  <a class="nav_item_sidebar--left" ng-click="showsidebar(false)">提問說明</a>
+  <a class="nav_item_sidebar--left" ng-click="showsidebar(false)" >登入</a>
+  </div>
+  
+  
 
 </div>
-<header class="md-whiteframe-z1" ng-show="focusQuestion">
-  <div class="q_item_remove" ng-click="toggleQuestion(false)" ng-if="focusQuestion">x</div>
-  
-</header>
-<header class="md-whiteframe-z1 nav_background" ng-show="!focusQuestion">
+
+<header class="md-whiteframe-z1 nav_background">
 
   <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
   <!-- <img src="images/watchout_logo.svg" id="watchout_nav_logo"> -->
-  <div class="nav_list_home"><div class="nav_list_home_btn"><a href="/ui2.0"><i class="fa fa-flask"></i> 給問 2.0</a></div></div>
-
+ 
   <div class="nav_list_function">
 
     <!-- toggle control -->
@@ -34,14 +32,40 @@
     
     <!-- 登入選單 -->
     <div class="nav_list_function_item_user l_inline" id="userMenu">
+       <div class="nav_list_function_item_select" ng-click="toggleUserMenu()"><i class="fa fa-ellipsis-v"></i></div>
+       <!--
         <div class="nav_list_function_item_select" ng-hide="user" ng-click="login()"><i class="fa fa-facebook"></i> 登入</div>
-        <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user"></div>
-        <div class="nav_list_function_item_select" ng-show="user" ng-click="toggleUserMenu()"><img class="user_profile_image" src="images/user.png"></div>
-        <div class="nav_list_function_item_tooltip" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user" ng-click="logout()">
-        	<div class="tri-up" ng-show="showUserMenu"></div>登出
+          -->
+        <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}"></div>
+        <!--
+        <div class="nav_list_function_item_tooltip" ng-class="{'nav_list_function_item_hide':!showUserMenu}">
+        	<div ng-show="showUserMenu"></div>登出
         </div>
+        -->
     </div>
+
+  
   </div>
+
+
+  <!-- * * * * * * * * * * * * * * * -->
+  <div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-rss"></i> 訂閱</a>
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
+
+      <div ng-show="candidate">
+      <a class="nav_item_sidebar--gray" ng-click="showsidebar(false)" >篩選問題</a>
+      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >01/28 Live 直播給問 <i class="fa fa-caret-down"></i></a>
+      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >所有問答 <i class="fa fa-caret-down"></i></a>
+      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >新經濟政策 <i class="fa fa-caret-down"></i></a>
+      </div>
+      
+  
+  </div>
+  <!-- * * * * * * * * * * * * * * * -->
+
+
+
   <!--<div class="nav_search">
     <div class="nav_search_inner">
        <input class="fs" ng-model="query"><i class="fa fa-search"></i>
