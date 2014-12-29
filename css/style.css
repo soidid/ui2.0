@@ -741,8 +741,8 @@ a.button--wide {
 }
 .order_control {
   position: fixed;
-  top: 10px;
-  right: 80px;
+  top: 13px;
+  right: 50px;
   z-index: 200;
   text-align: center;
   
@@ -755,6 +755,32 @@ a.nav_item_sidebar {
   /* border-bottom: 1px solid rgb(240,240,240); */
   text-align: left;
   cursor: pointer;
+}
+a.nav_item_sidebar--right {
+  border-bottom: 1px solid rgb(240,240,240);
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+a.nav_item_sidebar--inner {
+  color: rgb(53,55,54);
+}
+/* ---------- */
+.eventmenu {
+  height: auto;
+  border-left: 5px solid rgb(200,200,200);
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.eventmenu--hide {
+  height: 0px;
+  overflow: hidden;
+  
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
 }
 a.nav_item_sidebar--left {
   display: block;
@@ -795,7 +821,7 @@ a.nav_item_sidebar:hover {
 .tri-up:before, .tri-up:after {
   content: "";
   position: absolute;
-  right: 0px;
+  right: -3px;
   width: 0;
   height: 0;
   border-style: solid;
@@ -925,7 +951,7 @@ a.nav_item_sidebar:hover {
 }
 .nav_list_function_item_select {
   cursor: pointer;
-  padding: 15px 10px;
+  padding: 15px 5px;
   height: 50px;
   overflow: hidden;
 
@@ -1024,8 +1050,8 @@ a.nav_item_sidebar:hover {
   background-color: #db4437;
   height: 56px;
   position: fixed;
-  right: 30px;
-  bottom: 30px;
+  right: 15px;
+  bottom: 15px;
   width: 56px;
 
   border-radius: 50%;

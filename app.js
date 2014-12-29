@@ -245,7 +245,9 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   $scope.order = 'signatures_count';
 
- 
+  $scope.toggleEventmenu = function () {
+    $scope.eventmenu = !$scope.eventmenu;
+  };
   $scope.toggleToolbar = function () {
     $scope.showtoolbar = !$scope.showtoolbar;
     $scope.showinfo = false;

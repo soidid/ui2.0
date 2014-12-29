@@ -6,6 +6,30 @@
   <a class="button--wide" ng-class="{'inactive':order!=='signatures_count'}" ng-click="order='signatures_count'"><i class="fa fa-thumbs-o-up"></i> 熱門</a>
   <a class="button--wide" ng-class="{'inactive':order!=='post_timestamp'}" ng-click="order='post_timestamp'"><i class="fa fa-clock-o"></i> 最新</a>
 </div>
+
+<div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-rss"></i> 訂閱</a>
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
+
+     
+      <a class="nav_item_sidebar--gray" ng-click="showsidebar(false)" >篩選問題</a>
+      <a class="nav_item_sidebar nav_item_sidebar--right" ng-click="toggleEventmenu()" >{{candidate.name}} 01/28 Live 直播給問 
+      <i class="fa fa-caret-down" ng-hide="eventmenu"></i>
+      <i class="fa fa-caret-up" ng-show="eventmenu"></i></a>
+
+      <div class="eventmenu" ng-class="{'eventmenu--hide':!eventmenu}">
+      
+      <a class="nav_item_sidebar nav_item_sidebar--right nav_item_sidebar--inner" ng-click="toggleEventmenu()" ng-hide="isCurrentEvent('01/28 Live 直播給問')">{{candidate.name}} 01/28 Live 直播給問</a>
+      <a class="nav_item_sidebar nav_item_sidebar--right nav_item_sidebar--inner" ng-click="toggleEventmenu()" ng-hide="isCurrentEvent('#2015 給問')">{{candidate.name}} #2015 給問</a>
+      <a class="nav_item_sidebar nav_item_sidebar--right nav_item_sidebar--inner" ng-click="toggleEventmenu()" ng-hide="isCurrentEvent('@ptt 鄉民有約')">{{candidate.name}} @ptt 鄉民有約</a>
+      </div>
+
+
+      <a class="nav_item_sidebar nav_item_sidebar--right" ng-click="showsidebar(false)" >所有問答 <i class="fa fa-caret-down"></i></a>
+      <a class="nav_item_sidebar nav_item_sidebar--right" ng-click="showsidebar(false)" >新經濟政策 <i class="fa fa-caret-down"></i></a>
+
+  
+</div>
 <!-- Focus Questioin -->
 
 

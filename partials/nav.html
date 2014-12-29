@@ -7,7 +7,7 @@
   <!--<a class="nav_item_sidebar" ng-click="showsidebar(false)" >首頁</a>-->
   <a class="nav_item_sidebar--left" ng-click="showsidebar(false)" href="/ui2.0">首頁</a>
   <a class="nav_item_sidebar--left" ng-click="showsidebar(false)">提問說明</a>
-  <a class="nav_item_sidebar--left" ng-click="showsidebar(false)" >登入</a>
+  <a class="nav_item_sidebar--left" ng-click="login()" >登入</a>
   </div>
   
   
@@ -47,22 +47,6 @@
   
   </div>
 
-
-  <!-- * * * * * * * * * * * * * * * -->
-  <div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
-      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-rss"></i> 訂閱</a>
-      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
-
-      <div ng-show="candidate">
-      <a class="nav_item_sidebar--gray" ng-click="showsidebar(false)" >篩選問題</a>
-      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >01/28 Live 直播給問 <i class="fa fa-caret-down"></i></a>
-      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >所有問答 <i class="fa fa-caret-down"></i></a>
-      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >新經濟政策 <i class="fa fa-caret-down"></i></a>
-      </div>
-      
-  
-  </div>
-  <!-- * * * * * * * * * * * * * * * -->
 
 
 

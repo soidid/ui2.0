@@ -1,14 +1,30 @@
 <div ng-controller="AuthCtrl">
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
+
 <div class="order_control">
   <a class="button--wide" ng-class="{'inactive':!isCollectionMenuSelected('collecting')}" ng-click="setCollectionMenuitem('collecting')"><i class="fa fa-paper-plane"></i> 提問中</a>
   <a class="button--wide" ng-class="{'inactive':!isCollectionMenuSelected('all')}" ng-click="setCollectionMenuitem('all')"><i class="fa fa-th-list"></i> 全部</a>
 </div>
+
+<div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-rss"></i> 訂閱</a>
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
+
+     
+      <a class="nav_item_sidebar--gray" ng-click="showsidebar(false)" >Collections</a>
+      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >#政治人物</a>
+      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >#回答率 TOP 10</a>
+      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >#2016總統大選</a>
+      <a class="nav_item_sidebar" ng-click="showsidebar(false)" >#立法委員</a>
+
+  
+</div>
+
 <div id="content">
     <div id="page_content">
     <div class="page_wrapper">
     <div class="wrapper">
-        
+        #政治人物
 
         <a class="md-whiteframe-z1 person_card" ng-repeat="person in persons" ng-hide="isCollectionMenuSelected('collecting')&&!person.deadline" href="#/person/{{person.name}}">
            <img class="person_img" src="images/candidates/{{person.name}}.jpg">
