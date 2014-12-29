@@ -683,6 +683,11 @@ a.nav_item_sidebar {
   border-bottom: 1px solid rgb(240,240,240);
 
 }
+a.nav_item_sidebar--gray {
+  background: rgb(220,220,220);
+  color: rgb(53,55,54);
+  font-weight: 700;
+}
 a.nav_item_sidebar:hover {
   background: rgb(220,220,220);
 }

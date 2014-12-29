@@ -281,7 +281,7 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
       }else{
         $scope.focusQuestion = qid;
         $scope.currentQ = $scope.questionsObj[qid];
-        $location.hash(qid);
+        //$location.hash(qid);
       }
     }
     
