@@ -702,7 +702,7 @@ a.button--wide {
   background: white;
   position: absolute;
   text-align: center;
-  right: -100%;
+  
   top:0px;
 
   -moz-transition: .2s;
@@ -712,6 +712,9 @@ a.button--wide {
   transition-duration: .5s;
   overflow: scroll;
   height: 100%;
+}
+#focus-question.hide{
+  right: -100%;
 }
 #focus-question.show{
   top: 0px;
