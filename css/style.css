@@ -134,6 +134,7 @@ header {
   top: 0px;
   box-sizing: border-box;
   padding: 6px;
+  background: rgb(220, 220, 220);
 
 }
 .nav_background {
