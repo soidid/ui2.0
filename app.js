@@ -272,6 +272,8 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
     if(qid === false){
       $scope.focusQuestion = false;
+      document.getElementById('focus-question').scrollTop = 0;
+      
 
     }else{
 
