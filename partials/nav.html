@@ -1,55 +1,20 @@
 <div class="notification_wrapper">
 <div id="notification" class="notification_hide"></div>
 </div>
-<div id="sidebar-shadow" ng-show="sidebar || showUserMenu"></div>
+<div id="sidebar-shadow" ng-show="sidebar"></div><!-- controlMenu -->
 <div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="showsidebar(false)">
   <div class="sidebar-container_left">
   <!--<a class="nav_item_sidebar" ng-click="showsidebar(false)" >首頁</a>-->
-  <a class="nav_item_sidebar--left" ng-click="showsidebar(false)" href="/ui2.0">首頁</a>
+  <a class="nav_item_sidebar--left" href="#/">首頁</a>
   <a class="nav_item_sidebar--left" ng-click="showsidebar(false)">提問說明</a>
   <a class="nav_item_sidebar--left" ng-click="login()" >登入</a>
   </div>
-  
-  
-
 </div>
 
 <header class="md-whiteframe-z1 nav_background">
-
   <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
   <!-- <img src="images/watchout_logo.svg" id="watchout_nav_logo"> -->
  
-  <div class="nav_list_function">
-
-    <!-- toggle control -->
-    <!--<div id="toggleCtrl">
-        <div class="slider_wrap">
-            <input type="checkbox" id="s1" ng-click="toggleSignFilter()"/>
-            <label class="slider" for="s1"></label>
-        </div>
-    </div>-->
-
-    
-    <!-- 登入選單 -->
-    <div class="nav_list_function_item_user l_inline" id="userMenu">
-       <div class="nav_list_function_item_select" ng-click="toggleUserMenu()"><i class="fa fa-ellipsis-v"></i></div>
-       <!--
-        <div class="nav_list_function_item_select" ng-hide="user" ng-click="login()"><i class="fa fa-facebook"></i> 登入</div>
-          -->
-        <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}"></div>
-        <!--
-        <div class="nav_list_function_item_tooltip" ng-class="{'nav_list_function_item_hide':!showUserMenu}">
-        	<div ng-show="showUserMenu"></div>登出
-        </div>
-        -->
-    </div>
-
-  
-  </div>
-
-
-
-
   <!--<div class="nav_search">
     <div class="nav_search_inner">
        <input class="fs" ng-model="query"><i class="fa fa-search"></i>
