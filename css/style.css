@@ -1982,19 +1982,19 @@ input:checked + .slider::before {
   top: 8px;
 }
 .post_item_main {
-  margin-top: 10px;
+  margin: 10px 0px 20px 0px;
 }
 .post_item_title {
   font-size: 20px;
   font-weight: 700;
 }
-.post_item_text {
+.post_item_text, .post_item_text p {
   white-space: pre-wrap;
   font-size: 14px;
   line-height: 20px;
   margin: 6px 0px;
 }
-.post_item_text_preview {
+.post_item_text_preview, .post_item_text_preview p {
   font-size: 14px;
   line-height: 20px;
   margin: 6px 0px;
@@ -2004,13 +2004,8 @@ input:checked + .slider::before {
   height: 100px;
   overflow: hidden;
 }
-.post_item_text p {
-  margin: 0px;
-  line-height: 20px;
-  font-size: 14px;
-}
 @media screen and (min-width: 600px) {
-  .post_item_text {
+  .post_item_text_preview, .post_item_text, .post_item_text p {
     font-size: 16px;
     line-height: 20px;
   }
