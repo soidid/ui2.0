@@ -1,7 +1,14 @@
 <div ng-controller="AuthCtrl">
+
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
+<div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-rss"></i> 訂閱</a>
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
+</div>
+
 <!-- Focus Questioin -->
+
 <div id="focus-question" ng-class="{'show':focusQuestion}">
   <div class="q_content_nav md-whiteframe-z1" ng-class="{'show':focusQuestion}">
       <div class="q_content_nav_remove" ng-click="toggleQuestion(currentQ.id)"><i class="fa fa-chevron-left"></i> {{candidate.name}}</div>
@@ -91,15 +98,40 @@
   </div><!-- end of q_content -->
 </div><!-- end of focus-question -->
 
+<!-- LEFT & RIGHT BUTTON -->
+<!--
+<div class="page_button page_left" ng-click="previousPolicy()"><i class="fa fa-chevron-left"></i></div>
+<div class="page_button page_right" ng-click="nextPolicy()"><i class="fa fa-chevron-right"></i></div>
+-->
 <!-- . . . . . . . . . . . . -->
 
-<!-- ASK QUESTION BUTTON -->
-<span ng-if="!candidate.due">
+<div id="content" ng-click="resetFocus()">
+  <div id="page_content">
+
+  <!-- Person -->
+  <div class="wrapper" id="policy">
+  <!-- ......... -->      
+  <div class="person_intro">
+      <div class="person_intro_info">
+        <img class="person_intro_img" src="images/candidates/{{candidate.name}}.jpg">
+        <div class="person_intro_right">
+            <div class="person_intro_name_area">
+              <div class="person_intro_name">{{candidate.name}}</div>
+              <div class="person_intro_title">{{candidate.title}}</div>
+            </div>
+        </div>
+      </div>
+  </div><!-- end of person_intro -->
+
+  <!-- ASK QUESTION BUTTON -->
+  <span ng-if="!candidate.due">
           <!-- ASK QUESTION -->
           <div class="ask_item" ng-click="toogleAskQuestionForm()"><i class="fa fa-plus ask_icon"></i></div>
-</span>
-<!-- ASK QUESTION FORM -->
-<div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="showAskQuestionForm">
+
+  </span>
+
+  <!-- ASK QUESTION FORM -->
+  <div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="showAskQuestionForm">
           <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i> 對{{candidate.name}}提問：
               <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-minus"></i></div>
           </div>
@@ -116,65 +148,42 @@
                 <span class="ask_form_trash" ng-click="deleteAskQuestionForm();toogleAskQuestionForm();"><i class='fa fa-trash-o'></i></span>
               </div>
           </div>
-</div>
-
-
-
-
-<div id="content">
-  <div class="wrapper">
-  
-  <!-- Profile Card -->
-  <!-- * * * * * *  -->
-  <div class="person_item md-whiteframe-z1">
-    <!--
-    <div class="page_nav_left">
-         <div class="page_nav_button"><i class="fa fa-user"></i></div>
-    </div>
-    -->
-  
-    <img class="person_item_img" src="images/candidate_cover.jpg">
-   
-    <div class="page_nav_left">
-        <div class="page_nav_button_wide" ng-click="controlMenu=!controlMenu;">{{topic}}</div>
-    </div>
-    <div class="list_paper---left_control_set md-whiteframe-z1" ng-show="controlMenu" ng-click="controlMenu=!controlMenu;">
-          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='所有主題'}" ng-click="topic='所有主題'">所有主題</div>
-          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='管線災害之防災準備'}" ng-click="topic='管線災害之防災準備'">管線災害之防災準備</div>
-          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='公車、捷運不漲價政策'}" ng-click="topic='公車、捷運不漲價政策'">公車、捷運不漲價政策</div>
-          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='食安篇'}" ng-click="topic='食安篇">食安篇</div>
-    </div>
-    
-
-    <div class="person_item_name_block">
-        <div class="person_intro_name">{{candidate.name}}</div>
-        <div class="person_intro_title">{{candidate.title}}</div>
-        <div class="person_intro_reply_count">
-            <div class="person_intro_reply_count_main">{{(questions | filter: query | orderBy: order : true | filter: respondFilterFunction).length}}</div>
-            <div class="person_intro_reply_count_sub">
-                <span ng-show="!isRepondFilterOn()">提問</span>
-                <span ng-show="isRepondFilterOn()">回答</span>
-            </div>
-        </div>
-
-    </div>
-    <div class="person_item_action">
-        <div class="page_nav_tab"ng-class="{'active':order==='signatures_count'&&!isRepondFilterOn()}" ng-click="order='signatures_count';setRepondFilter(false);"><i class="fa fa-check"></i> 熱門</div>
-        <div class="page_nav_tab" ng-click="order='post_timestamp';setRepondFilter(false);" ng-class="{'active':order==='post_timestamp'&&!isRepondFilterOn()}"><i class="fa fa-clock-o" ></i> 最新</div>
-        <div class="page_nav_tab" ng-click="setRepondFilter(true)" ng-class="{'active':isRepondFilterOn()}"><i class="fa fa-reply"></i> 回答</div>
-     
-    </div>
   </div>
- 
-  <div class="list_paper md-whiteframe-z1">
-  <!-- Question Cards -->
-  <!-- * * * * * *  -->
- 
+  
 
+
+
+  <!-- Question -->
+  
+  <!-- * * * * * *  -->
+  <div class="list_paper md-whiteframe-z1">
+
+  <div class="list_paper---control_panel">
+      <div class="list_paper---control_button" ng-click="order='signatures_count';setRepondFilter(false);"><a class="button--wide" ng-class="{'active':order==='signatures_count'&&!isRepondFilterOn()}" ><i class="fa fa-check"></i> 熱門</a></div>
+      
+      <div class="list_paper---control_button" ng-click="order='post_timestamp';setRepondFilter(false);"><a class="button--wide" ng-class="{'active':order==='post_timestamp'&&!isRepondFilterOn()}" ><i class="fa fa-clock-o"></i> 最新</a></div>
+
+      <div class="list_paper---control_button" ng-click="setRepondFilter(true)"><a class="button--wide" ng-class="{'active':isRepondFilterOn()}" ><i class="fa fa-reply"></i> 回答</a></div>
+      
+      <!-- MORE controls -->
+      <div class="list_paper---right_control_button" ng-click="controlMenu=!controlMenu;" ng-class="{'active':controlMenu}"><i class="fa fa-ellipsis-v"></i></div>
+      <!--<div class="tri-up" ng-show="controlMenu"></div>-->
+      <div class="list_paper---right_control_set md-whiteframe-z1" ng-show="controlMenu" ng-click="controlMenu=!controlMenu;">
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic===1}" ng-click="topic=1">所有主題</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic===2}" ng-click="topic=2">管線災害之防災準備</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic===3}" ng-click="topic=3">公車、捷運不漲價政策</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic===4}" ng-click="topic=4">食安篇</div>
+      </div>
+
+  
+  </div>
+
+
+<!-- //////////////// -->
   <div class="post_item md-whiteframe-z1" ng-repeat="q in questions | filter: query | orderBy: order : true | filter: respondFilterFunction | limitTo: display_max" >
       <!-- DISPLAY questions -->
       <div ng-if="!q.responses">
-          <div class="post_item_info">
+      <div class="post_item_info">
           <img class="post_item_img" ng-src="images/user/{{random(q.signatures_count)}}.jpg">
           <div class="post_item_vote">{{q.signatures_count | number:0 }}<br/>連署</div>
           
@@ -182,9 +191,9 @@
           <img class="post_item_img post_item_img_responded" ng-src="images/candidates/{{candidate.name}}.jpg">
           <div class="post_item_vote">{{q.signatures_count/8+7 | number:0 }} Likes</div>
           </span> -->
-          </div>
-    
-          <div class="post_item_content" ng-click="toggleQuestion(q.id);$event.stopPropagation()">
+      </div>
+
+      <div class="post_item_content" ng-click="toggleQuestion(q.id);$event.stopPropagation()">
         <div class="post_item_author" >{{randomName(q.signatures_count)}}</div>
         <div class="post_item_date" >{{q.post_timestamp | date }}</div>
         
@@ -194,23 +203,26 @@
               {{q.content[0] | limitTo:120}}{{((q.content[0]).length > 120 || q.content[1]) ? '... see more':''}}
           </div>
         </div>
-          </div>
-    
-          <div class="post_action">
+
+      </div>
+
+
+      <div class="post_action">
           <div class="post_action_button" ng-class="{'signed':hasSigned(q.id)}" ng-click="sign(q.id)"><i class="fa fa-check"></i> 連署</div>
           <div class="post_action_button"><i class="fa fa-comments-o"></i> 留言</div>
           <div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
-          </div>
+      </div>
       </div>
 
       <!-- DISPLAY responses -->
       <div ng-if="q.responses" class="post_item_responded">
-          <div class="post_item_info" >
+      <div class="post_item_info" >
           <img class="post_item_img" ng-src="images/candidates/{{candidate.name}}.jpg">
-          <div class="post_item_vote">{{q.signatures_count/8+7 | number:0 }}<br/>推薦</div>    
-          </div>
+          <div class="post_item_vote">{{q.signatures_count/8+7 | number:0 }}<br/>推薦</div>
+          
+      </div>
 
-          <div class="post_item_content" ng-click="toggleQuestion(q.id);$event.stopPropagation()">
+      <div class="post_item_content" ng-click="toggleQuestion(q.id);$event.stopPropagation()">
         <div class="post_item_author" >{{candidate.name}}</div>
         <div class="post_item_date" >{{q.post_timestamp | date }}</div>
         
@@ -218,24 +230,30 @@
           <div class="post_item_title"><i class="fa fa-reply"></i> {{q.title}}</div>
           <div class="post_item_text"><div class="post_item_text_response_preview" ng-bind-html="toTrusted(q.responses[0].content)"></div>... see more</div>
         </div>
-          </div>
 
-          <div class="post_action">
-              <div class="post_action_button"><i class="fa fa-star"></i> 推薦</div>
-              <div class="post_action_button"><i class="fa fa-comments-o"></i> 留言</div>
-              <div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
-          </div>
       </div>
-  </div><!-- end of post_item -->
+
+      <div class="post_action">
+          <div class="post_action_button"><i class="fa fa-star"></i> 推薦</div>
+          <div class="post_action_button"><i class="fa fa-comments-o"></i> 留言</div>
+          <div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
+      </div>
+      </div>
+
+      
   </div>
+
+<!-- //////////////// -->
+  
+ 
+  
+
+  </div><!-- wrapper -->
   <div class="question_bottom">
      <a class="button" ng-click="seeMore()">更多</a>
   </div>
-  
-  <!-- //////////////// -->
-
-  </div><!-- wrapper -->
-  <div ng-include="'partials/footer.html'"></div>
+  </div>
+<div ng-include="'partials/footer.html'"></div>
 </div><!-- content -->
 
 </div><!-- Auth -->

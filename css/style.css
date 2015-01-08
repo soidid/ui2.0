@@ -55,8 +55,9 @@ a {
 #content {
 	margin-top: 50px;
   min-height: 600px;
-
-
+}
+#person_content {
+  margin-top: 96px;
 }
 #page_content {
   min-height: 600px;
@@ -503,15 +504,14 @@ a.button.facebook{
   background: #0277BD;
 }
 a.button--square.active, a.button--wide.active{
-  color: rgb(53,55,54);
-  background: #009688;
-  color: white;
-  
+  /* color: rgb(53,55,54); background: #009688; color: white; */
+  color: #009688;
 }
 a.button.goodrating{
   background: #8BC34A;
 }
 a.button--wide {
+  font-weight: 900;
   background: white;
   -moz-transition: .2s;
   -ms-transition: .2s;
@@ -1536,102 +1536,67 @@ input:checked + .slider::before {
 /* ------------------------------------------------------------ */
 /* person page
 /* ------------------------------------------------------------ */
-.person_intro {
-  background: rgb(247,247,247);
+.person_item {
+  background: white;
+  margin-bottom: 5px;
+  position: relative;
+  box-sizing: border-box;
+  color: rgb(53,55,54);
   
 }
-.person_intro_menubar {
-  background: white;
-}
-.person_intro_menubar a {
-  color: rgb(53,55,54);
-}
-.person_intro_menuitem {
-  width: 100px;
-  display: inline-block;
-  margin: 8px 0px 8px 0px;
-  text-align: center;
-  border-right: 1px solid rgb(240,240,240);
-  cursor: pointer;
-}
-@media screen and (max-width:400px) {
-  .person_intro_menuitem {
-    width: 70px;
-
-  }
-}
-
-.person_intro_menuitem--active {
-  box-shadow: 0px 18px 0px -10px #4DB6AC;
-}
-.person_intro_img {
-  width: 150px;
-  float:left;
-}
-.person_intro_info {
+.person_item_img {
   width: 100%;
-  min-height: 150px;
 }
-.person_intro_right {
-  overflow: hidden;  
-  _overflow: visible;
-  zoom:1;
-  padding: 5px;
-
-}
-.person_intro_name_area {
-  margin-top: 70px;
+.person_item_name_block {
+  padding-left: 8px;
+  position: relative;
+  height: 100px;
 }
 .person_intro_name {
   font-size: 30px;
   font-weight: 800;
+  padding-top: 10px;
 }
 .person_intro_title {
   font-size: 18px;
   font-weight: 800;
   opacity: 0.9;
 }
-#person_intro_follow {
-  font-size: 20px;
-  cursor: pointer;
-  padding: 2px 5px;
-}
-.person_toolbar {
-  padding: 10px 4px;
-  background: rgb(224,224,224);
-  position: relative;
-}
-.person_toolbar--hide {
-  height: 0px;
-  width: 0px;
-  padding: 0px;
-  overflow: hidden;
-}
-
-.person_toolbar_control--active {
-  color: #009688;
-}
-.person_toolbar_item {
-  margin-bottom: 5px;
-}
-.person_toolbar_left_sets {
-  margin-right: 100px;
-}
-.person_toolbar_order_sets {
-  display: block;
+.person_intro_reply_count {
   position: absolute;
-  right: 4px;
-  top: 10px;
-
+  top: 0px;
+  right: 12px;
+  text-align: center;
 }
-.person_toolbar_section {
-  padding: 0px 10px;
-  font-weight: 700;
+.person_intro_reply_count_main {
+  font-size: 48px;
+  padding-bottom: 0px;
+  min-width: 50px;
 }
-
-.person_page_q_collection {
-  margin-top: 4px;
-
+.person_intro_reply_count_sub {
+  font-size: 16px;
+  position: absolute;
+  right: 0px;
+  bottom: -12px;
+  width: 100%;
+}
+.person_item_info_block {
+  height: 80px;
+  width: 100%;
+}
+.person_item_action {
+  position: relative;
+  border-top: 1px solid rgb(240,240,240);
+}
+/* ---- */
+.person_intro {
+  background: white;
+  height: 120px;
+}
+.person_intro_right {
+  overflow:hidden;  _overflow:visible;  zoom:1; 
+  padding: 4px;
+  color: rgb(53,55,54);
 }
 /* ------------------------------------------------------------ */
 /* person intro response
@@ -1666,7 +1631,6 @@ input:checked + .slider::before {
 /* ------------------------------------------------------------ */
 .list_paper {
   background: white;
-
 }
 .list_paper---control_panel {
   padding: 10px;
@@ -1692,16 +1656,26 @@ input:checked + .slider::before {
   text-align: center;
   border-radius: 50%;
 }
+
 .list_paper---right_control_button:hover {
   background: rgb(230,230,230);
 }
 .list_paper---right_control_set {
   position: absolute;
   right: 0px;
-  top: 50px;
+  top: 0px;
   z-index: 40;
   background: white;
+  width: auto;
 
+}
+.list_paper---left_control_set {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 40;
+  background: white;
+  width: auto;
 }
 .list_paper---right_control_set_item {
   background: white;
@@ -2041,23 +2015,15 @@ input:checked + .slider::before {
 /* related item
 /* ------------------------------------------------------------ */ 
 .related_item {
-  margin-bottom: 5px;
   position: relative;
   cursor: pointer;
   box-sizing: border-box;
   height: auto;
-  width: 50%;
-  display: inline-block;
-
-}
-
-.related_item.left {
-  padding-right: 4px;
 }
 .related_item_inner {
   padding: 8px;
   background: white;
-  min-height: 160px;
+  min-height: 80px;
   overflow: hidden;
 }
 @media screen and (max-width: 400px){
@@ -2084,4 +2050,79 @@ input:checked + .slider::before {
   font-size: 16px;
   margin-top: 5px;
 }
-
+/* ------------------------------------------------------------ */
+/* page nav / tab nav
+/* ------------------------------------------------------------ */ 
+.page_nav {
+  z-index: 100;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgb(220, 220, 220);
+  position: fixed;
+  top: 0px;
+  
+}
+.page_nav_title {
+  display: inline-block;
+  margin-left: 20px;
+  font-weight: 700;
+  font-size: 1.4em;
+}
+.page_nav_right {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+.page_nav_left {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+}
+.page_nav_button {
+  width: 40px;
+  height: 40px;
+  padding-top: 10px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 50%;
+  color: white;
+}
+.page_nav_button_wide {
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+}
+.page_nav_button:hover {
+  background: rgba(220,220,220,0.3);
+}
+.page_nav_list {
+  min-height: 40px;
+  background: #009688;
+  
+}
+.page_nav_list.padding {
+  padding: 8px;
+}
+.page_nav_tab {
+  height: 40px;
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+  padding-top: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+}
+.page_nav_tab_right {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.page_nav_tab.active {
+  border-bottom: 3px solid #FFEB3B;
+}

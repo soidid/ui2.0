@@ -1,0 +1,72 @@
+<!-- ......... -->      
+  <div class="person_intro">
+      <div class="person_intro_info">
+        <img class="person_intro_img" src="images/candidates/{{candidate.name}}.jpg">
+        <div class="person_intro_right">
+            <div class="person_intro_name_area">
+              <div class="person_intro_name">{{candidate.name}}</div>
+              <div class="person_intro_title">{{candidate.title}}</div>
+            </div>
+        </div>
+      </div>
+  </div><!-- end of person_intro -->
+
+<!-- ////////////////////////////// -->
+
+  <div class="person_item md-whiteframe-z1">
+    <img class="person_item_img" src="images/candidate_cover.jpg">
+
+    <div class="person_item_name_block">
+        <div class="person_intro_name">{{candidate.name}}</div>
+        <div class="person_intro_title">{{candidate.title}}</div>
+        <div class="person_intro_reply_count">
+            <div class="person_intro_reply_count_main">12</div>
+            <div class="person_intro_reply_count_sub">回答</div>
+        </div>
+    </div>
+ 
+    <div class="person_item_info_block">
+      <div class="post_action">
+          <div class="post_action_button"><i class="fa fa-user"></i> 簡介</div>
+          <div class="post_action_button"><i class="fa fa-file-text-o"></i> 政見</div>
+      </div>
+    </div>
+    </div>
+
+<!-- ////////////////////////////// -->
+    <div class="page_nav md-whiteframe-z1">
+    <div class="page_nav_list padding">
+        <div class="page_nav_button"><i class="fa fa-align-justify"></i></div>
+        <div class="page_nav_title">{{candidate.name}}</div>
+        <div class="page_nav_right">
+            <div class="page_nav_button"><i class="fa fa-ellipsis-v"></i></div>
+        </div>
+    </div>
+
+    <div class="page_nav_list">
+        <div class="page_nav_tab active">問答</div>
+        <div class="page_nav_tab">簡介</div>
+        <div class="page_nav_tab">政見</div>
+    </div>
+</div>
+
+<!-- ////////////////////////////// -->
+<div class="list_paper---control_panel">
+      <div class="list_paper---control_button" ng-click="order='signatures_count';setRepondFilter(false);"><a class="button--wide" ng-class="{'active':order==='signatures_count'&&!isRepondFilterOn()}" ><i class="fa fa-check"></i> 熱門</a></div>
+      
+      <div class="list_paper---control_button" ng-click="order='post_timestamp';setRepondFilter(false);"><a class="button--wide" ng-class="{'active':order==='post_timestamp'&&!isRepondFilterOn()}" ><i class="fa fa-clock-o"></i> 最新</a></div>
+
+      <div class="list_paper---control_button" ng-click="setRepondFilter(true)"><a class="button--wide" ng-class="{'active':isRepondFilterOn()}" ><i class="fa fa-reply"></i> 回答</a></div>
+      
+      <!-- MORE controls -->
+      <div class="list_paper---right_control_button" ng-click="controlMenu=!controlMenu;" ng-class="{'active':controlMenu}"><i class="fa fa-ellipsis-v"></i></div>
+      <!--<div class="tri-up" ng-show="controlMenu"></div>-->
+      <div class="list_paper---right_control_set md-whiteframe-z1" ng-show="controlMenu" ng-click="controlMenu=!controlMenu;">
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic===1}" ng-click="topic=1">所有主題</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic===2}" ng-click="topic=2">管線災害之防災準備</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic===3}" ng-click="topic=3">公車、捷運不漲價政策</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic===4}" ng-click="topic=4">食安篇</div>
+      </div>
+
+  
+  </div>

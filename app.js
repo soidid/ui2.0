@@ -220,7 +220,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
 app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
 
-  $scope.topic = 1;
+  $scope.topic = '所有主題';
   $scope.order = 'signatures_count';
   $scope.display_max = 10;
   $scope.seeMore = function () {
