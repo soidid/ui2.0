@@ -1,6 +1,7 @@
 
 var app = angular.module("app", [
-  "ngRoute"
+  "ngRoute",
+  "ngTouch"
 ]);
 
 app.filter('htmlToPlaintext', function() {
@@ -223,6 +224,13 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   $scope.topic = '所有主題';
   $scope.order = 'signatures_count';
   $scope.display_max = 10;
+  $scope.comment = false;
+
+  $scope.toggleComment = function () {
+    console.log("comment toggle!");
+    $scope.comment = !$scope.comment;
+  };
+
   $scope.seeMore = function () {
     $scope.display_max += 10;
   };
@@ -281,6 +289,10 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   };
   $scope.toggleQuestion = function(qid){
     $scope.questionToggled = true;
+    $scope.showRelatedItem = false;
+
+
+
     console.log("click"+qid);
 
     if(qid === false){
@@ -292,15 +304,35 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
       if($scope.focusQuestion === qid){
         $scope.focusQuestion = null;
         $scope.questionToggled = false;
+        $scope.comment = false;
         $location.path('/person/'+$scope.candidate.name);//////
+        $scope.showActions = 'question';
         
       }else{
         $scope.focusQuestion = qid;
         $scope.currentQ = $scope.questionsObj[qid];
+
+        if($scope.currentQ.responses){
+          $scope.showActions = 'response';
+
+        }else{
+          $scope.showActions = 'question';
+
+        }
+        console.log("$scope.showActions: "+$scope.showActions);
+        
+       
+        
         //$location.hash(qid);
       }
     }
     
+  };
+  $scope.toggleActions = function(value) {
+    $scope.showActions = value;
+  };
+  $scope.isActions = function(value) {
+    return $scope.showActions === value;
   };
   
   
@@ -344,6 +376,10 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   DataService.getData('user_signatures').then(function(data){
      $scope.signatures = data;
+
+  });
+  DataService.getData('posts').then(function(data){
+     $scope.posts = data;
 
   });
   $scope.hasSigned = function (qid) {

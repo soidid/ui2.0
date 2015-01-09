@@ -1,0 +1,109 @@
+<div id="focus-question" ng-class="{'show':focusQuestion}">
+  <!-- Nav -->
+  <div class="q_content_nav md-whiteframe-z1" ng-class="{'show':focusQuestion}">
+      <div class="q_content_nav_remove" ng-click="toggleQuestion(currentQ.id)"><i class="fa fa-chevron-left"></i> {{candidate.name}}</div>
+      <!-- <div class="q_content_nav_title"> {{currentQ.title}}</div> -->
+      <div class="q_content_nav_state">
+          <i class="fa" ng-class="{'fa-circle':showActions === 'question','fa-circle-thin':showActions !== 'question'}" ng-click="toggleActions('question')"></i>
+          <i class="fa" ng-class="{'fa-circle':showActions === 'response','fa-circle-thin':showActions !== 'response'}" ng-click="toggleActions('response')"></i>
+          <i class="fa" ng-class="{'fa-circle':showActions === 'related','fa-circle-thin':showActions !== 'related'}" ng-click="toggleActions('related')"></i>
+      </div>
+  </div>
+  <div class="wrapper">
+
+  <!-- //////////// Part 1 ///////////// -->
+  <div class="q_content" ng-swipe-left="toggleActions('response')" ng-show="isActions('question')">
+    <div class="post_item md-whiteframe-z1" >
+      <!-- DISPLAY questions -->
+      <div class="post_item_info">
+          <img class="post_item_img" ng-src="images/user/{{random(currentQ.signatures_count)}}.jpg">
+          <div class="post_item_vote">{{currentQ.signatures_count | number:0 }}<br/>連署</div>
+      </div>
+      <div class="post_item_content">
+        <div class="post_item_author" >{{randomName(currentQ.signatures_count)}}</div>
+        <div class="post_item_date" >{{currentQ.post_timestamp | date }}</div>
+        
+        <div class="post_item_main">
+          <div class="post_item_title">{{currentQ.title}}</div>
+          
+          <div ng-show="showFullQuestion || !currentQ.responses">
+              <p class="post_item_text" ng-repeat="p in currentQ.content">{{p}}</p>
+          </div>
+
+          <div class="post_item_text_preview" ng-show="!showFullQuestion && currentQ.responses" ng-click="showFullQuestion=true;">
+              {{currentQ.content[0] | limitTo:120}}{{((currentQ.content[0]).length > 120 || currentQ.content[1]) ? '... see more':''}}
+          </div>
+          
+        </div>
+      </div>
+      <div class="post_action">
+          <div class="post_action_button" ng-class="{'signed':hasSigned(currentQ.id)}" ng-click="sign(currentQ.id)"><i class="fa fa-check"></i> 連署</div>
+          <div class="post_action_button" ng-click="toggleComment()"><i class="fa fa-comments-o"></i> 留言</div><div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
+      </div> 
+    </div><!-- end of post_item-->
+
+    <!-- DISPLAY comments -->
+    <div ng-include="'partials/comment.html'"></div>
+   
+
+
+  </div><!-- end of q_content -->
+  
+  <!-- //////////// Part 2 ///////////// -->
+  <div class="q_content" ng-swipe-right="toggleActions('question')" ng-swipe-left="toggleActions('related')" ng-show="isActions('response')">
+      <!-- DISPLAY responses -->
+      <div class="post_item md-whiteframe-z1" ng-show="currentQ.responses">
+          <div class="post_item_info">
+              <img class="post_item_img" src="images/candidates/{{candidate.name}}.jpg">
+              <div class="post_item_vote">{{ 51 | number:0 }}<br/>推薦</div>
+          </div>
+          <div class="post_item_content">
+              <div class="post_item_author" >{{candidate.name}}回覆 <i class="fa fa-reply"></i> </div>
+              <div class="post_item_date" >{{currentQ.post_timestamp | date }}</div>
+              <div class="post_item_main">
+                  <div class="post_item_text" ng-bind-html="toTrusted(currentQ.responses[0].content)"></div>
+              </div>
+          </div>
+          <div class="post_action">
+              <div class="post_action_button"><i class="fa fa-star"></i> 推薦</div>
+              <div class="post_action_button" ng-click="toggleComment()"><i class="fa fa-comments-o"></i> 留言</div>
+              <div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
+          </div>
+      </div>
+
+      <!-- DISPLAY comments -->
+      <div ng-include="'partials/comment.html'" ng-show="currentQ.responses"></div>
+
+  
+      <!-- DISPLAY related responses -->
+      <!-- button -->
+      <div class="l_center">
+          <h3 ng-show="!currentQ.responses">{{candidate.name}}尚未回覆此題<span ng-show="showRelatedItem"></span></h3>
+      </div>
+  </div><!-- end of q_content -->
+  
+  <!-- //////////// Part 3 ///////////// -->
+  <div class="q_content" ng-swipe-left="toggleActions('response')" ng-show="isActions('related')">
+      <div class="q_content_title">還有其他 6 個回覆</div>
+      <!-- responses -->
+      <div class="related_item" ng-repeat="p in persons" ng-class="{'left':{{($index)%2===0}}}" ng-show="p.name !== candidate.name" >
+          <div class="related_item_inner md-whiteframe-z1">
+          <div class="related_item_info">
+              <img class="post_item_img" ng-src="images/candidates/{{p.name}}.jpg">
+              <div class="post_item_vote">{{ 213 | number:0 }}<br/>推薦</div>  
+          </div>
+          <div class="related_item_content" ng-click="switchPerson(p.name)"><!--ng-click="switchPerson(p.name)"-->
+              <div class="related_item_meta">{{p.name}}</div>
+              <div class="post_item_date" >{{'1408464540255' | date }}</div>
+              <div class="related_item_main">{{p.response | limitTo: 30}}{{(p.response).length>30?'...':''}}</div>
+          </div>
+      </div>
+
+  </div><!-- end of q_content -->
+
+
+
+
+  </div><!-- end of wrapper -->
+</div><!-- end of focus-question -->
+
