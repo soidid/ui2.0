@@ -12,7 +12,7 @@
   <div class="wrapper">
 
   <!-- //////////// Part 1 ///////////// -->
-  <div class="q_content" ng-swipe-left="toggleActions('response')" ng-show="isActions('question')">
+  <div class="q_content" ng-swipe-left="toggleActions('response')" ng-class="{'q_content--hideleft':!isActions('question'),'q_content--show':isActions('question')}">
     <div class="post_item md-whiteframe-z1" >
       <!-- DISPLAY questions -->
       <div class="post_item_info">
@@ -38,7 +38,7 @@
       </div>
       <div class="post_action">
           <div class="post_action_button" ng-class="{'signed':hasSigned(currentQ.id)}" ng-click="sign(currentQ.id)"><i class="fa fa-check"></i> 連署</div>
-          <div class="post_action_button" ng-click="toggleComment()"><i class="fa fa-comments-o"></i> 留言</div><div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
+          <div class="post_action_button" ng-click="toggleComment()"><i class="fa fa-comments-o"></i> 討論</div><div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
       </div> 
     </div><!-- end of post_item-->
 
@@ -50,7 +50,7 @@
   </div><!-- end of q_content -->
   
   <!-- //////////// Part 2 ///////////// -->
-  <div class="q_content" ng-swipe-right="toggleActions('question')" ng-swipe-left="toggleActions('related')" ng-show="isActions('response')">
+  <div class="q_content" ng-swipe-right="toggleActions('question');" ng-swipe-left="toggleActions('related')" ng-class="{'q_content--hideright':isActions('question'),'q_content--show':isActions('response'),'q_content--hideleft':isActions('related')}">
       <!-- DISPLAY responses -->
       <div class="post_item md-whiteframe-z1" ng-show="currentQ.responses">
           <div class="post_item_info">
@@ -83,7 +83,7 @@
   </div><!-- end of q_content -->
   
   <!-- //////////// Part 3 ///////////// -->
-  <div class="q_content" ng-swipe-left="toggleActions('response')" ng-show="isActions('related')">
+  <div class="q_content" ng-swipe-right="toggleActions('response');" ng-class="{'q_content--hideright':!isActions('related'),'q_content--show':isActions('related')}">
       <div class="q_content_title">還有其他 6 個回覆</div>
       <!-- responses -->
       <div class="related_item" ng-repeat="p in persons" ng-class="{'left':{{($index)%2===0}}}" ng-show="p.name !== candidate.name" >

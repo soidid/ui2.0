@@ -3,12 +3,18 @@
           <img class="post_item_img" ng-src="images/user.jpg">
     </div>
     <div class="post_item_content">
-        <textarea placeholder="輸入留言"></textarea>
+        <textarea placeholder="輸入文字"></textarea>
     </div>
     <div class="comment_action">
         <div class="comment_action_button">送出</div>
     </div>
-</div>    
+</div> 
+
+<div class="question_bottom" ng-show="!showCommentStream">
+    <a class="button" ng-click="showCommentStream = true;">顯示討論</a>
+</div>
+
+<div ng-show="showCommentStream">
 <div class="comment_item md-whiteframe-z1" ng-repeat="p in posts">
     <div class="post_item_info">
       <img class="post_item_img" ng-src="images/comment/{{p.uploaded_avatar_id}}.png">
@@ -21,9 +27,9 @@
           <div class="post_item_text" ng-bind-html="toTrusted(p.cooked)"></div>
       </div>
     </div>
-
-
 </div>
 <div class="question_bottom">
-        <a class="button" ng-click="seeMore()">更多</a>
+    <a class="button" ng-click="seeMore()">更多</a>
+</div>
+
 </div>

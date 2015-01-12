@@ -328,6 +328,7 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
     }
     
   };
+  
   $scope.toggleActions = function(value) {
     $scope.showActions = value;
   };
