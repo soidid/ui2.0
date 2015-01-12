@@ -97,7 +97,7 @@
               <img class="post_item_img" ng-src="images/candidates/{{p.name}}.jpg">
               <div class="post_item_vote">{{ 213 | number:0 }}<br/>推薦</div>  
           </div>
-          <div class="related_item_content" ng-click="switchPerson(p.name)"><!--ng-click="switchPerson(p.name)"-->
+          <div class="related_item_content" ng-click="switchPerson(p.id)"><!--ng-click="switchPerson(p.name)"-->
               <div class="related_item_meta">{{p.name}}</div>
               <div class="post_item_date" >{{'1408464540255' | date }}</div>
               <div class="related_item_main">{{p.response | limitTo: 30}}{{(p.response).length>30?'...':''}}</div>

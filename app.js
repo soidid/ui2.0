@@ -163,53 +163,16 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   $scope.setCollectionMenuitem = function(value){
       $scope.selectedCollectionMenu = value;
   };
-  $scope.persons = [
-  { 
-    "name":"蔡英文",
-    "answered":20,
-    "latest":"12/14",
-    "deadline" : "12/31"
-
-  },
-  { 
-    "name":"吳敦義",
-    "answered":3,
-    "latest":"10/01"
-  },
-  { 
-    "name":"朱立倫",
-    "answered":10,
-    "latest":"11/28",
-    "deadline" : "12/31"
-  },
-  { 
-    "name":"柯文哲",
-    "answered":43,
-    "latest":"9/28"
-  },
-  { 
-    "name":"賴清德",
-    "answered":3,
-    "latest":"7/01"
-  },
-  { 
-    "name":"陳菊",
-    "answered":12,
-    "latest":"6/17"
-  },
-  { 
-    "name":"林佳龍",
-    "answered":1,
-    "latest":"5/4"
-  }];
-
-  $scope.groups = [
-  { 
-    "name":"總統參選人",
-    "answered":1,
-    "latest":"5/4"
-  }
-  ];
+  
+  DataService.getData('candidate').then(function(data){
+    $scope.persons = [];
+    for(var key in data){
+        $scope.persons.push(data[key]);
+    }
+    console.log($scope.persons);
+   
+  });
+  
 
   $scope.cover = "cover_small";
   if($( window ).width() > 400){
@@ -305,7 +268,7 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
         $scope.focusQuestion = null;
         $scope.questionToggled = false;
         $scope.comment = false;
-        $location.path('/person/'+$scope.candidate.name);//////
+        $location.path('/person/'+$scope.candidate.id);//////
         $scope.showActions = 'question';
         
       }else{
@@ -328,7 +291,7 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
     }
     
   };
-  
+
   $scope.toggleActions = function(value) {
     $scope.showActions = value;
   };
