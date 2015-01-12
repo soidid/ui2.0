@@ -16,17 +16,21 @@
 
 <div ng-show="showCommentStream">
 <div class="comment_item md-whiteframe-z1" ng-repeat="p in posts">
-    <div class="post_item_info">
-      <img class="post_item_img" ng-src="images/comment/{{p.uploaded_avatar_id}}.png">
-      <div class="post_item_vote">{{p.id | number:0 }}<br/>推薦</div>
-    </div>
-    <div class="post_item_content">
-      <div class="post_item_author" >{{p.name}}</div>
-      <div class="post_item_date" >{{currentQ.post_timestamp | date }}</div>
-      <div class="post_item_main">
-          <div class="post_item_text" ng-bind-html="toTrusted(p.cooked)"></div>
+    <div class="comment_item_info">
+      <img class="comment_item_img" ng-src="images/comment/{{p.uploaded_avatar_id}}.png">
+      <div class="comment_item_vote">{{p.id | number:0 }}<br/>推薦</div>
+      <div class="comment_item_info_text">
+          <div>{{p.name}}</div>
+          <div>{{currentQ.post_timestamp | date }}</div>
       </div>
+      
     </div>
+   
+
+    <div class="comment_item_main">
+        <div class="post_item_text" ng-bind-html="toTrusted(p.cooked)"></div>
+    </div>
+    
 </div>
 <div class="question_bottom">
     <a class="button" ng-click="seeMore()">更多</a>
