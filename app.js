@@ -188,6 +188,7 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   $scope.order = 'signatures_count';
   $scope.display_max = 10;
   $scope.comment = false;
+  $scope.view = 'question';
 
   $scope.toggleComment = function () {
     console.log("comment toggle!");

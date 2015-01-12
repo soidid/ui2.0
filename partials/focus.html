@@ -3,16 +3,13 @@
   <div class="q_content_nav md-whiteframe-z1" ng-class="{'show':focusQuestion}">
       <div class="q_content_nav_remove" ng-click="toggleQuestion(currentQ.id)"><i class="fa fa-chevron-left"></i> {{candidate.name}}</div>
       <!-- <div class="q_content_nav_title"> {{currentQ.title}}</div> -->
-      <div class="q_content_nav_state">
-          <i class="fa" ng-class="{'fa-circle':showActions === 'question','fa-circle-thin':showActions !== 'question'}" ng-click="toggleActions('question')"></i>
-          <i class="fa" ng-class="{'fa-circle':showActions === 'response','fa-circle-thin':showActions !== 'response'}" ng-click="toggleActions('response')"></i>
-          <i class="fa" ng-class="{'fa-circle':showActions === 'related','fa-circle-thin':showActions !== 'related'}" ng-click="toggleActions('related')"></i>
-      </div>
-      <div class="q_content_nav_state_info">
-          <div ng-show="isActions('question')">問題</div>
-          <div ng-show="isActions('response')">回覆</div>
-          <div ng-show="isActions('related')">相關回覆</div>
-      </div>
+      
+      
+          <div class="page_nav_tab space" ng-class="{'active':showActions === 'question'}" ng-click="toggleActions('question')">提問</div>
+          <div class="page_nav_tab space" ng-class="{'active':showActions === 'response'}" ng-click="toggleActions('response')">回答</div>
+          <div class="page_nav_tab space" ng-class="{'active':showActions === 'related'}" ng-click="toggleActions('related')">更多</div>
+     
+      
   </div>
   <div class="wrapper">
 
@@ -70,7 +67,7 @@
               </div>
           </div>
           <div class="post_action">
-              <div class="post_action_button"><i class="fa fa-star"></i> 推薦</div>
+              <div class="post_action_button"><i class="fa fa-thumbs-o-up"></i> 推薦</div>
               <div class="post_action_button" ng-click="toggleComment()"><i class="fa fa-comments-o"></i> 留言</div>
               <div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
           </div>

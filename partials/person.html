@@ -46,123 +46,36 @@
 
 
 <div id="content">
-  <div class="wrapper">
-  
-  <!-- Profile Card -->
+<!-- Profile Card -->
   <!-- * * * * * *  -->
-  <div class="person_item_collection" ng-show="signFilter">
   <div class="person_item md-whiteframe-z1">
     <!--
     <div class="page_nav_left">
          <div class="page_nav_button"><i class="fa fa-user"></i></div>
     </div>
     -->
-  
-    <img class="person_item_img" src="images/candidate_cover.jpg">
-   
-    <div class="page_nav_left">
-        <div class="page_nav_button_wide" ng-click="controlMenu=!controlMenu;">{{topic}}</div>
-    </div>
-    <div class="list_paper---left_control_set md-whiteframe-z1" ng-show="controlMenu" ng-click="controlMenu=!controlMenu;">
-          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='所有主題'}" ng-click="topic='所有主題'">所有主題</div>
-          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='管線災害之防災準備'}" ng-click="topic='管線災害之防災準備'">管線災害之防災準備</div>
-          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='公車、捷運不漲價政策'}" ng-click="topic='公車、捷運不漲價政策'">公車、捷運不漲價政策</div>
-          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='食安篇'}" ng-click="topic='食安篇">食安篇</div>
-    </div>
-    
-
-    <div class="person_item_name_block">
+    <div class="person_item_top">
+        <img class="person_item_img" src="images/candidates/{{candidate.name}}.jpg">
         <div class="person_intro_name">{{candidate.name}}</div>
-        <div class="person_intro_title">{{candidate.title}}</div>
-        <div class="person_intro_reply_count">
-            <div class="person_intro_reply_count_main">{{(questions | filter: query | orderBy: order : true | filter: respondFilterFunction).length}}</div>
-            <div class="person_intro_reply_count_sub">
-                <span ng-show="!isRepondFilterOn()">提問</span>
-                <span ng-show="isRepondFilterOn()">回答</span>
-            </div>
-        </div>
-
-    </div>
-    <div class="person_item_action">
-        <div class="page_nav_tab"ng-class="{'active':order==='signatures_count'&&!isRepondFilterOn()}" ng-click="order='signatures_count';setRepondFilter(false);"><i class="fa fa-check"></i> 熱門</div>
-        <div class="page_nav_tab" ng-click="order='post_timestamp';setRepondFilter(false);" ng-class="{'active':order==='post_timestamp'&&!isRepondFilterOn()}"><i class="fa fa-clock-o" ></i> 最新</div>
-        <div class="page_nav_tab" ng-click="setRepondFilter(true)" ng-class="{'active':isRepondFilterOn()}"><i class="fa fa-reply"></i> 回答</div>
-     
-    </div>
-  </div>
-  <div class="person_item right md-whiteframe-z1">
-   
-    collection 2
-   
-
-  </div>
-  </div>
- 
-  <div class="list_paper md-whiteframe-z1">
-  <!-- Question Cards -->
-  <!-- * * * * * *  -->
- 
-
-  <div class="post_item md-whiteframe-z1" ng-repeat="q in questions | filter: query | orderBy: order : true | filter: respondFilterFunction | limitTo: display_max" >
-      <!-- DISPLAY questions -->
-      <div ng-if="!q.responses">
-          <div class="post_item_info">
-          <img class="post_item_img" ng-src="images/user/{{random(q.signatures_count)}}.jpg">
-          <div class="post_item_vote">{{q.signatures_count | number:0 }}<br/>連署</div>
-          
-          <!-- <span ng-if="q.responses">
-          <img class="post_item_img post_item_img_responded" ng-src="images/candidates/{{candidate.name}}.jpg">
-          <div class="post_item_vote">{{q.signatures_count/8+7 | number:0 }} Likes</div>
-          </span> -->
-          </div>
-    
-          <div class="post_item_content">
-        <div class="post_item_author" >{{randomName(q.signatures_count)}}</div>
-        <div class="post_item_date" >{{q.post_timestamp | date }}</div>
         
-        <div class="post_item_main" ng-click="toggleQuestion(q.id);$event.stopPropagation();">
-          <div class="post_item_title">{{q.title}}</div>
-          <div class="post_item_text_preview">
-              {{q.content[0] | limitTo:120}}{{((q.content[0]).length > 120 || q.content[1]) ? '... see more':''}}
-          </div>
+
+        <div class="person_item_action">
+          <div class="page_nav_tab" ng-class="{'active':!isRepondFilterOn()&&view==='question'}" ng-click="setRepondFilter(false); view='question'">提問</div>
+          <div class="page_nav_tab" ng-click="setRepondFilter(true); view='question'" ng-class="{'active':isRepondFilterOn()&&view==='question'}">回答</div>
+          <div class="page_nav_tab" ng-class="{'active':view==='about'}" ng-click="view='about'">簡介</div>
+          <div class="page_nav_tab" ng-class="{'active':view==='stat'}" ng-click="view='stat'">數據</div>
         </div>
-          </div>
+    </div>
+  
     
-          <div class="post_action">
-          <div class="post_action_button" ng-class="{'signed':hasSigned(q.id)}" ng-click="sign(q.id)"><img src="images/vote_cc_by.svg" class="post_action_button_icon">連署</div>
-          <div class="post_action_button" ng-click="toggleComment();toggleQuestion(q.id);$event.stopPropagation();"><i class="fa fa-comments-o"></i> 討論</div>
-          <div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
-          </div>
-      </div>
-
-      <!-- DISPLAY responses -->
-      <div ng-if="q.responses" class="post_item_responded">
-          <div class="post_item_info" >
-          <img class="post_item_img" ng-src="images/candidates/{{candidate.name}}.jpg">
-          <div class="post_item_vote">{{q.signatures_count/8+7 | number:0 }}<br/>推薦</div>    
-          </div>
-
-        <div class="post_item_content">
-        <div class="post_item_author" >{{candidate.name}}回覆 <i class="fa fa-reply"></i> </div>
-        <div class="post_item_date" >{{q.post_timestamp | date }}</div>
-        
-        <div class="post_item_main" ng-click="toggleQuestion(q.id);$event.stopPropagation();">
-          <div class="post_item_title">{{q.title | limitTo: 30}}{{(q.title).length > 30 ? '...':''}}</div>
-          <div class="post_item_text_preview">{{q.responses[0].content | htmlToPlaintext | limitTo: 120}}... see more</div>
-        </div>
-        </div>
-
-          <div class="post_action">
-              <div class="post_action_button"><i class="fa fa-thumbs-o-up"></i> 推薦</div>
-              <div class="post_action_button" ng-click="comment=true;showCommentStream=true;toggleQuestion(q.id);$event.stopPropagation();"><i class="fa fa-comments-o"></i> 討論</div>
-              <div class="post_action_button"><i class="fa fa-facebook"></i> 分享</div>
-          </div>
-      </div>
-  </div><!-- end of post_item -->
+    
   </div>
-  <div class="question_bottom">
-     <a class="button" ng-click="seeMore()">更多</a>
-  </div>
+
+  <div class="wrapper">
+      <div ng-include="'partials/question-list.html'" ng-show="view==='question'"></div>
+      <div ng-show="view==='about'">about</div>
+      <div ng-show="view==='stat'">stat</div>
+  
   
   <!-- //////////////// -->
 

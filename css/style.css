@@ -53,7 +53,7 @@ a {
 
 }
 #content {
-	margin-top: 50px;
+	margin-top: 40px;
   min-height: 600px;
 }
 #person_content {
@@ -133,7 +133,7 @@ hr {
 header {
   z-index: 100;
   color: white;
-  height: 50px;
+  height: 40px;
   width: 100%;
   position: fixed;
   top: 0px;
@@ -705,7 +705,8 @@ a.button--wide {
   overflow: hidden;
   position: absolute;
   left:0px;
-  top: 50px;
+  top: 0px;
+  z-index: 400;
   
  
 }
@@ -775,12 +776,21 @@ a.button--wide {
   transition: right .5s ease-in-out;
 
 }
+.q_content_nav_tab {
+  height: 35px;
+  position: relative;
+  width: 100%;
+  text-align: right;
+ 
+}
 .q_content_nav {
   width: 100%;
-  height: 50px;
+  min-height: 40px;
   background: #424242;
   font-weight: 700;
   z-index: 400;
+  color: white;
+  text-align: right;
 }
 .q_content_nav.show {
   position: fixed;
@@ -794,39 +804,10 @@ a.button--wide {
   display: inline-block;
   position: absolute;
   left: 20px;
-  top: 10px;
-  font-size: 20px;
+  top: 8px;
+  font-size: 16px;
   color: white;
   cursor: pointer;
-}
-.q_content_nav_title {
-  color: white;
-  padding-top: 13px;
-  margin: 0px 20px 0px 130px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
- 
-}
-.q_content_nav_state {
-  padding-top: 16px;
-  color: white;
-  font-size: 8px;
-}
-.q_content_nav_state_info {
-  position: absolute;
-  right: 10px;
-  top: 12px;
-  color: white;
-}
-.order_control {
-  position: fixed;
-  top: 13px;
-  right: 50px;
-  z-index: 200;
-  text-align: center;
-  
-  display: inline-block;
 }
 a.nav_item_sidebar {
   display: block;
@@ -926,8 +907,8 @@ a.nav_item_sidebar:hover {
 .nav_list_toggle {
   position: absolute;
   cursor: pointer;
-  top: 14px;
-  left: 20px;
+  top: 10px;
+  left: 12px;
   z-index: 10;
 }
 /*
@@ -1587,22 +1568,23 @@ input:checked + .slider::before {
 /* ------------------------------------------------------------ */
 .person_item {
   background: white;
-  margin: 0px 5px 5px 5px;
+  margin-bottom: 5px;
   position: relative;
   box-sizing: border-box;
   color: rgb(53,55,54);
-  min-height: 310px;
   
 }
-.person_item.right {
-  width: 100%;
-  right: -95%;
-  top: 8px;
-  position: absolute;
-  overflow: hidden;
+.person_item_top {
+  min-height: 150px;
+  background: #009688;
+  text-align: center;
+  color: white;
 }
 .person_item_img {
-  width: 100%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-top: 20px;
 
 }
 .person_item_name_block {
@@ -1611,9 +1593,9 @@ input:checked + .slider::before {
   height: 100px;
 }
 .person_intro_name {
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 800;
-  padding-top: 10px;
+  
 }
 .person_intro_title {
   font-size: 18px;
@@ -1644,7 +1626,15 @@ input:checked + .slider::before {
 }
 .person_item_action {
   position: relative;
-  border-top: 1px solid rgb(240,240,240);
+  width: 100%;
+  text-align: left;
+  margin-top: 20px;
+ 
+}
+/* ---- */
+.control_item {
+  background: white;
+  margin-bottom: 1px;
 }
 /* ---- */
 .person_intro {
@@ -2179,14 +2169,19 @@ input:checked + .slider::before {
   padding: 8px;
 }
 .page_nav_tab {
-  height: 40px;
+  height: 35px;
   display: inline-block;
-  width: 32%;
+  width: 62px;
   text-align: center;
   padding-top: 8px;
   font-weight: 700;
   cursor: pointer;
   position: relative;
+  font-size: 14px;
+
+}
+.page_nav_tab.space {
+  height: 40px;
 }
 .page_nav_tab_right {
   position: absolute;
@@ -2195,6 +2190,9 @@ input:checked + .slider::before {
 }
 .page_nav_tab.active {
   border-bottom: 3px solid #FFEB3B;
+}
+.page_nav_tab.active--inline {
+  color: #00695C;
 }
 /* ------------------------------------------------------------ */
 /* comment item

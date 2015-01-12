@@ -1,3 +1,29 @@
+<div class="page_nav_left">
+        <div class="page_nav_button_wide" ng-click="controlMenu=!controlMenu;">{{topic}}</div>
+    </div>
+    <div class="list_paper---left_control_set md-whiteframe-z1" ng-show="controlMenu" ng-click="controlMenu=!controlMenu;">
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='所有主題'}" ng-click="topic='所有主題'">所有主題</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='管線災害之防災準備'}" ng-click="topic='管線災害之防災準備'">管線災害之防災準備</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='公車、捷運不漲價政策'}" ng-click="topic='公車、捷運不漲價政策'">公車、捷運不漲價政策</div>
+          <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='食安篇'}" ng-click="topic='食安篇">食安篇</div>
+    </div>
+
+
+    <div class="person_item_name_block">
+        
+        <div class="person_intro_reply_count">
+            <div class="person_intro_reply_count_main">{{(questions | filter: query | orderBy: order : true | filter: respondFilterFunction).length}}</div>
+            <div class="person_intro_reply_count_sub">
+                <span ng-show="!isRepondFilterOn()">提問</span>
+                <span ng-show="isRepondFilterOn()">回答</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    
+
 <!-- ......... -->      
   <div class="person_intro">
       <div class="person_intro_info">
