@@ -2055,9 +2055,12 @@ input:checked + .slider::before {
   box-sizing: border-box;
   cursor: pointer;
   color: rgb(100,100,100);
-  
 }
-.post_action_button:hover, .post_action_button.signed{
+.post_action_button_icon {
+  width: 20px;
+  vertical-align: top;
+}
+.post_action_button:hover, .post_action_button.signed, .post_action_button_icon:hover{
   color: #009688;
 
 }
