@@ -450,10 +450,10 @@ transition-duration: .5s;
   top: 0px;
   right: -100%;
   width: 0px;
-  -moz-transition: .2s;
-  -ms-transition: .2s;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  -webkit-transition: .5s;
+  transition: .5s;
   transition-duration: .5s;
   
 }
@@ -463,6 +463,7 @@ transition-duration: .5s;
   right: 0px;
   -webkit-transition: right .5s ease-in-out;
   transition: right .5s ease-in-out;
+  
   overflow: auto;
 
 }
@@ -1042,15 +1043,9 @@ a.nav_item_sidebar:hover {
   top: 2px;
   right: 10px;
 }
-@media screen and (max-width: 500px){
-  #candidateTopMenu, #toggleCtrl{
-     display: none;
-
-  }
-}
 #toggleCtrl {
   position: absolute;
-  right: 160px;
+  right: 0px;
   top: 0px;
 
 }
@@ -1592,14 +1587,23 @@ input:checked + .slider::before {
 /* ------------------------------------------------------------ */
 .person_item {
   background: white;
-  margin-bottom: 5px;
+  margin: 0px 5px 5px 5px;
   position: relative;
   box-sizing: border-box;
   color: rgb(53,55,54);
+  min-height: 310px;
   
+}
+.person_item.right {
+  width: 100%;
+  right: -95%;
+  top: 8px;
+  position: absolute;
+  overflow: hidden;
 }
 .person_item_img {
   width: 100%;
+
 }
 .person_item_name_block {
   padding-left: 8px;

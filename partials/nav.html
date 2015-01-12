@@ -13,6 +13,14 @@
 <header class="nav_background md-whiteframe-z1">
   <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i>
   </div>
+
+  <!-- toggle control -->
+    <div id="toggleCtrl">
+        <div class="slider_wrap">
+            <input type="checkbox" id="s1" ng-click="toggleSignFilter()" checked/>
+            <label class="slider" for="s1"></label>
+        </div>
+    </div>
 <!--
   <div class="page_nav_right">
       <div class="page_nav_button"><i class="fa fa-ellipsis-v"></i> </div>

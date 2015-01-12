@@ -314,9 +314,11 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   if($location.hash()) {// has is question id
      $scope.focusQuestion = $location.hash();
   }*/
-  
+  $scope.signFilter = true;
   $scope.toggleSignFilter = function () {
+
       $scope.signFilter = !$scope.signFilter;
+      console.log($scope.signFilter);
   };
 
   DataService.getData('candidate').then(function(data){
