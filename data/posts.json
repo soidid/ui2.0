@@ -1,6 +1,7 @@
 [
          {
             "id":24,
+            "votes":24,
             "name":"Audrey Tang",
             "username":"audreyt",
             "avatar_template":"/user_avatar/talk.vtaiwan.tw/audreyt/{size}/6.png",
@@ -95,6 +96,7 @@
          },
          {
             "id":27,
+            "votes":32,
             "name":"Pofeng Lee",
             "username":"pofeng",
             "avatar_template":"/user_avatar/talk.vtaiwan.tw/pofeng/{size}/11.png",
@@ -189,6 +191,7 @@
          },
          {
             "id":29,
+            "votes":1,
             "name":"Audrey Tang",
             "username":"audreyt",
             "avatar_template":"/user_avatar/talk.vtaiwan.tw/audreyt/{size}/6.png",
@@ -288,6 +291,7 @@
          },
          {
             "id":36,
+            "votes":14,
             "name":"Stella Hsieh",
             "username":"Stella_Hsieh",
             "avatar_template":"/user_avatar/talk.vtaiwan.tw/stella_hsieh/{size}/21.png",

@@ -46,7 +46,7 @@ a {
   padding-top: 15px;
   margin-left: auto;
   margin-right: auto;
-  padding:8px;
+  padding: 0px 8px;
   box-sizing: border-box;
   position: relative;
   /* background: rgb(236,236,236);*/
@@ -423,7 +423,7 @@ transition-duration: .5s;
   padding: 0px 20px 0px 10px;
 }
 .q_content {
-  margin-top: 50px; /* for fixed nav */
+  margin-top: 40px; /* for fixed nav */
   text-align: left;
   height: 100vh;
   padding-bottom: 10px;
@@ -1633,10 +1633,53 @@ input:checked + .slider::before {
   margin-top: 20px;
  
 }
+.comment_control_item {
+  background: rgb(77,182,172);
+  width: 100%;
+  min-height: 60px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.comment_control_item_action {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+.comment_control_item_title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 5px;
+  text-align: center;
+  color: white;
+  padding: 32px 0px 40px 0px;
+}
+.comment_add_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #FBC02D;
+  position: absolute;
+  bottom: -20px;
+  right: 10px;
+  z-index: 10;
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+  cursor: pointer;
+}
+.comment_add_button:hover {
+   box-shadow: 0 6px 6px rgba(0,0,0,.08),0 6px 16px rgba(0,0,0,.14);
+}
 /* ---- */
 .control_item {
-  background: white;
   margin-bottom: 1px;
+  position: relative;
+}
+.control_item_right {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  cursor: pointer;
 }
 /* ---- */
 .person_intro {
@@ -1977,7 +2020,13 @@ input:checked + .slider::before {
 .post_item_vote {
   text-align: center;
   font-size: 12px;
-  
+}
+.post_item_order {
+  text-align: center;
+  font-size: 12px;
+  width: 100%;
+  margin-bottom: 6px;
+  background: rgb(220,220,220);
 }
 .post_item_content {
   overflow: hidden;  
@@ -2004,7 +2053,7 @@ input:checked + .slider::before {
   top: 8px;
 }
 .post_item_main {
-  margin: 2px 0px 20px 0px;
+  margin: 6px 0px 20px 0px;
 }
 .post_item_title {
   font-size: 20px;
@@ -2173,7 +2222,7 @@ input:checked + .slider::before {
 .page_nav_tab {
   height: 35px;
   display: inline-block;
-  width: 62px;
+  width: 58px;
   text-align: center;
   padding-top: 8px;
   font-weight: 700;
@@ -2202,12 +2251,11 @@ input:checked + .slider::before {
 
 .comment_item {
   background: white;
-
   padding: 8px; 
-  min-height: 120px;
+  min-height: 150px;
   position: relative;
   box-sizing: border-box;
-  height: auto;
+
 }
 .comment_item_info {
   border-bottom: 1px solid rgb(240,240,240);
@@ -2246,6 +2294,7 @@ input:checked + .slider::before {
   padding: 8px; 
   padding-bottom: 40px; 
   position: relative;
+  border-bottom: 1px solid rgb(240,240,240);
 
 }
 .comment_input_item textarea {

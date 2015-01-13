@@ -62,8 +62,9 @@
         <div class="person_item_action">
           <div class="page_nav_tab" ng-class="{'active':!isRepondFilterOn()&&view==='question'}" ng-click="setRepondFilter(false); view='question'">提問</div>
           <div class="page_nav_tab" ng-click="setRepondFilter(true); view='question'" ng-class="{'active':isRepondFilterOn()&&view==='question'}">回答</div>
-          <div class="page_nav_tab" ng-class="{'active':view==='about'}" ng-click="view='about'">簡介</div>
-          <div class="page_nav_tab" ng-class="{'active':view==='stat'}" ng-click="view='stat'">數據</div>
+          <div class="page_nav_tab" ng-class="{'active':view === 'topic'}" ng-click="view='topic'">主題</div>
+          <div class="page_nav_tab" ng-class="{'active':view === 'about'}" ng-click="view='about'">簡介</div>
+          <div class="page_nav_tab" ng-class="{'active':view === 'stat'}" ng-click="view='stat'">數據</div>
         </div>
     </div>
   
@@ -73,6 +74,7 @@
 
   <div class="wrapper">
       <div ng-include="'partials/question-list.html'" ng-show="view==='question'"></div>
+      <div ng-show="view==='topic'">主題</div>
       <div ng-show="view==='about'">about</div>
       <div ng-show="view==='stat'">stat</div>
   

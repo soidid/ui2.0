@@ -5,10 +5,9 @@
   <div class="page_nav_tab" ng-class="{'active--inline':order==='post_timestamp'}" ng-click="order='post_timestamp'">最新</div>
   </div>
 
+
   <!-- Question Cards -->
   <!-- * * * * * *  -->
- 
-
   <div class="post_item md-whiteframe-z1" ng-repeat="q in questions | filter: query | orderBy: order : true | filter: respondFilterFunction | limitTo: display_max" >
       <!-- DISPLAY questions -->
       <div ng-if="!q.responses">
