@@ -430,7 +430,7 @@ transition-duration: .5s;
   position: relative;
   width: 100%;
   background: rgb(247,247,247);
-  overflow: hidden;
+  
 
 }
 .q_content--hideleft {
@@ -443,6 +443,7 @@ transition-duration: .5s;
   -webkit-transition: .2s;
   transition: .2s;
   transition-duration: .5s;
+  overflow: hidden;
 
 }
 .q_content--hideright {
@@ -455,6 +456,7 @@ transition-duration: .5s;
   -webkit-transition: .5s;
   transition: .5s;
   transition-duration: .5s;
+  overflow: hidden;
   
 }
 .q_content--show {
@@ -463,8 +465,7 @@ transition-duration: .5s;
   right: 0px;
   -webkit-transition: right .5s ease-in-out;
   transition: right .5s ease-in-out;
-  
-  overflow: auto;
+  overflow: scroll;
 
 }
 .q_content_title {
