@@ -1,3 +1,4 @@
+
 <div class="list_paper md-whiteframe-z1">
 
   <div class="control_item md-whiteframe-z1">
@@ -17,7 +18,7 @@
 
   <!-- Question Cards -->
   <!-- * * * * * *  -->
-  <div class="post_item md-whiteframe-z1" ng-repeat="q in questions | filter: query | orderBy: order : true | filter: respondFilterFunction | limitTo: display_max" >
+  <div class="post_item md-whiteframe-z1" ng-repeat="q in questions | filter: Nav.nav_query | orderBy: order : true | filter: respondFilterFunction | limitTo: display_max" >
       <!-- DISPLAY questions -->
       <div ng-if="!q.responses">
           <div class="post_item_info">
@@ -73,7 +74,7 @@
           </div>
       </div>
   </div><!-- end of post_item -->
-  </div>
-  <div class="question_bottom">
+</div><!-- end of list_papter -->
+<div class="question_bottom">
      <a class="button" ng-click="seeMore()">更多</a>
-  </div>
+</div>

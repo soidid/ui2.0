@@ -1,0 +1,23 @@
+<span ng-if="!candidate.due">
+      <!-- ASK QUESTION -->
+      <div class="ask_item" ng-click="toogleAskQuestionForm()"><i class="fa fa-plus ask_icon"></i></div>
+</span>
+<!-- ASK QUESTION FORM -->
+<div class="ask_form" ng-class="{'show':showAskQuestionForm}">
+          <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i> 對{{candidate.name}}提問：
+              <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-minus"></i></div>
+          </div>
+          <div class="ask_form_listitem"><span class="ask_form_subtitle">提問主題</span>{{currentPolicy.title}}</div>
+          <div class="ask_form_listitem">
+            <span class="ask_form_subtitle">問題簡述</span>
+            <input placeholder="請在此輸入簡短清楚的問題簡述">
+          </div>
+
+          <div class="ask_form_content">
+              <textarea placeholder="問題說明：您可以在此進一步說明您的問題"></textarea>
+              <div class="ask_form_functions">
+                <a class="button"><i class="fa fa-bullhorn"></i> 送出</a>
+                <span class="ask_form_trash" ng-click="deleteAskQuestionForm();toogleAskQuestionForm();"><i class='fa fa-trash-o'></i></span>
+              </div>
+          </div>
+</div>

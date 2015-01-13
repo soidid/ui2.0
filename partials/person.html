@@ -1,51 +1,12 @@
-<div ng-controller="AuthCtrl">
-<div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
-
-<!-- Comment -->
-<!--
-<div class="page_nav" ng-show="comment">
-    <div class="page_nav_list">
-      <div class="age_nav_left" ng-click="toggleComment()"><div class="page_nav_button"><i class="fa fa-times"></i></div></div>
-    </div>
-</div>
-<div id="comment-panel" class="md-whiteframe-z1" ng-show="comment">
-  im comment!
-</div>
--->
-
+<div ng-controller="AuthCtrl"><div ng-controller="NavCtrl as Nav">
+<div ng-include="'partials/nav.html'"></div>
 <div ng-include="'partials/focus.html'"></div>
-
 <!-- . . . . . . . . . . . . -->
-
-<!-- ASK QUESTION BUTTON -->
-<span ng-if="!candidate.due">
-      <!-- ASK QUESTION -->
-      <div class="ask_item" ng-click="toogleAskQuestionForm()"><i class="fa fa-plus ask_icon"></i></div>
-</span>
-<!-- ASK QUESTION FORM -->
-<div class="ask_form" ng-class="{'show':showAskQuestionForm}">
-          <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i> 對{{candidate.name}}提問：
-              <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-minus"></i></div>
-          </div>
-          <div class="ask_form_listitem"><span class="ask_form_subtitle">提問主題</span>{{currentPolicy.title}}</div>
-          <div class="ask_form_listitem">
-            <span class="ask_form_subtitle">問題簡述</span>
-            <input placeholder="請在此輸入簡短清楚的問題簡述">
-          </div>
-
-          <div class="ask_form_content">
-              <textarea placeholder="問題說明：您可以在此進一步說明您的問題"></textarea>
-              <div class="ask_form_functions">
-                <a class="button"><i class="fa fa-bullhorn"></i> 送出</a>
-                <span class="ask_form_trash" ng-click="deleteAskQuestionForm();toogleAskQuestionForm();"><i class='fa fa-trash-o'></i></span>
-              </div>
-          </div>
-</div>
-
-
-
+<!-- ASK QUESTION form -->
+<div ng-include="'partials/ask-form.html'"></div>
 
 <div id="content">
+
 <!-- Profile Card -->
   <!-- * * * * * *  -->
   <div class="person_item md-whiteframe-z1">
@@ -54,35 +15,31 @@
          <div class="page_nav_button"><i class="fa fa-user"></i></div>
     </div>
     -->
-    <div class="person_item_top">
-        <img class="person_item_img" src="images/candidates/{{candidate.name}}.jpg">
-        <div class="person_intro_name">{{candidate.name}}</div>
-        
-
-        <div class="person_item_action">
+  <div class="person_item_top">
+      <img class="person_item_img" src="images/candidates/{{candidate.name}}.jpg">
+      <div class="person_intro_name">{{candidate.name}}</div>
+      <div class="person_item_action">
           <div class="page_nav_tab" ng-class="{'active':!isRepondFilterOn()&&view==='question'}" ng-click="setRepondFilter(false); view='question'">提問</div>
           <div class="page_nav_tab" ng-click="setRepondFilter(true); view='question'" ng-class="{'active':isRepondFilterOn()&&view==='question'}">回答</div>
-          <div class="page_nav_tab" ng-class="{'active':view === 'topic'}" ng-click="view='topic'">主題</div>
+          <!-- <div class="page_nav_tab" ng-class="{'active':view === 'topic'}" ng-click="view='topic'">主題</div> -->
           <div class="page_nav_tab" ng-class="{'active':view === 'about'}" ng-click="view='about'">簡介</div>
           <div class="page_nav_tab" ng-class="{'active':view === 'stat'}" ng-click="view='stat'">數據</div>
-        </div>
-    </div>
+      </div>
+  </div>
   
     
     
   </div>
-
   <div class="wrapper">
       <div ng-include="'partials/question-list.html'" ng-show="view==='question'"></div>
-      <div ng-show="view==='topic'">主題</div>
-      <div ng-show="view==='about'">about</div>
+      <!--<div ng-show="view==='topic'">主題</div>-->
+      <div ng-include="'partials/about.html'" ng-show="view==='about'"></div>
       <div ng-show="view==='stat'">stat</div>
-  
-  
+
   <!-- //////////////// -->
 
   </div><!-- wrapper -->
   <div ng-include="'partials/footer.html'"></div>
 </div><!-- content -->
-
+</div><!-- Nav -->
 </div><!-- Auth -->
