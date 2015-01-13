@@ -787,6 +787,7 @@ a.button--wide {
 .q_content_nav {
   width: 100%;
   min-height: 40px;
+  position: fixed;
   background: #424242;
   font-weight: 700;
   z-index: 400;

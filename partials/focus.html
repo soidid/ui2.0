@@ -3,13 +3,9 @@
   <div class="q_content_nav md-whiteframe-z1" ng-class="{'show':focusQuestion}">
       <div class="q_content_nav_remove" ng-click="toggleQuestion(currentQ.id)"><i class="fa fa-chevron-left"></i> {{candidate.name}}</div>
       <!-- <div class="q_content_nav_title"> {{currentQ.title}}</div> -->
-      
-      
           <div class="page_nav_tab space" ng-class="{'active':showActions === 'question'}" ng-click="toggleActions('question')">提問</div>
           <div class="page_nav_tab space" ng-class="{'active':showActions === 'response'}" ng-click="toggleActions('response')">回答</div>
           <div class="page_nav_tab space" ng-class="{'active':showActions === 'related'}" ng-click="toggleActions('related')">更多</div>
-     
-      
   </div>
   <div class="wrapper">
 
