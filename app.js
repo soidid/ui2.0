@@ -184,11 +184,12 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
 app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
 
-  $scope.topic = '所有主題';
+  $scope.topic = '最新提出';
   $scope.order = 'signatures_count';
   $scope.display_max = 10;
   $scope.comment = false;
   $scope.view = 'question';
+  $scope.comment_order = 'votes';//post_number
 
   $scope.toggleComment = function () {
     console.log("comment toggle!");

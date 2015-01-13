@@ -423,14 +423,13 @@ transition-duration: .5s;
   padding: 0px 20px 0px 10px;
 }
 .q_content {
-  margin-top: 40px; /* for fixed nav */
+  margin-top: 45px; /* for fixed nav */
   text-align: left;
-  height: 100vh;
+  height: auto;
   padding-bottom: 10px;
   position: relative;
   width: 100%;
   background: rgb(247,247,247);
-  
 
 }
 .q_content--hideleft {
@@ -1136,11 +1135,25 @@ a.nav_item_sidebar:hover {
   z-index: 99;
   position: fixed;
   right: 10px;
-  bottom: 0px;
+  bottom: -100%;
+
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
 
 }
-.ask_form_minimize {
-  height: 40px;
+.ask_form.show{
+  height: 100vh;
+  bottom: 0%;
+
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+
 }
 .ask_form_title {
   background: #009688;
@@ -1765,7 +1778,7 @@ input:checked + .slider::before {
 .list_paper---left_control_set {
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: 35px;
   z-index: 40;
   background: white;
   width: auto;
@@ -2062,24 +2075,18 @@ input:checked + .slider::before {
 }
 .post_item_text, .post_item_text p {
   /* white-space: pre-wrap; */
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
   margin-bottom: 10px;
   margin-top: 2px;
 }
 .post_item_text_preview, .post_item_text_preview p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
   margin: 6px 0px;
 
 }
 
-@media screen and (min-width: 600px) {
-  .post_item_text_preview, .post_item_text, .post_item_text p {
-    font-size: 16px;
-    line-height: 20px;
-  }
-}
 .post_action {
   position: absolute;
   bottom: 4px;
@@ -2255,6 +2262,7 @@ input:checked + .slider::before {
   min-height: 150px;
   position: relative;
   box-sizing: border-box;
+  border-bottom: 1px solid rgb(240,240,240);
 
 }
 .comment_item_info {
@@ -2271,7 +2279,7 @@ input:checked + .slider::before {
   zoom: 1;
   color: #9E9E9E;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   font-family: Helvetica,Arial,sans-serif;
 
   min-height: 45px;

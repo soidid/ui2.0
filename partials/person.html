@@ -19,11 +19,11 @@
 
 <!-- ASK QUESTION BUTTON -->
 <span ng-if="!candidate.due">
-          <!-- ASK QUESTION -->
-          <div class="ask_item" ng-click="toogleAskQuestionForm()"><i class="fa fa-plus ask_icon"></i></div>
+      <!-- ASK QUESTION -->
+      <div class="ask_item" ng-click="toogleAskQuestionForm()"><i class="fa fa-plus ask_icon"></i></div>
 </span>
 <!-- ASK QUESTION FORM -->
-<div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="showAskQuestionForm">
+<div class="ask_form" ng-class="{'show':showAskQuestionForm}">
           <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i> 對{{candidate.name}}提問：
               <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-minus"></i></div>
           </div>

@@ -1,8 +1,17 @@
 <div class="list_paper md-whiteframe-z1">
 
   <div class="control_item md-whiteframe-z1">
+  
+  <div class="page_nav_tab" ng-class="{'active--inline':order==='post_timestamp'}" ng-click="order='post_timestamp';controlMenu=!controlMenu;">最新</div>
   <div class="page_nav_tab" ng-class="{'active--inline':order==='signatures_count'}" ng-click="order='signatures_count'">熱門</div>
-  <div class="page_nav_tab" ng-class="{'active--inline':order==='post_timestamp'}" ng-click="order='post_timestamp'">最新</div>
+  
+  <div class="list_paper---left_control_set md-whiteframe-z1" ng-show="controlMenu" ng-click="controlMenu=!controlMenu;">
+      <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='最新提出'}" ng-click="topic='最新提出'">最新提出</div>
+      <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='最新連署'}" ng-click="topic='最新連署'">最新連署</div>
+      <div class="list_paper---right_control_set_item" ng-class="{'active':topic==='最新討論'}" ng-click="topic='最新討論'">最新討論</div>
+  </div>
+
+
   </div>
 
 

@@ -29,8 +29,8 @@
       <div class="comment_add_button md-whiteframe-z1" ng-click="toggleComment()" ><i class="fa fa-plus"></i></div>
 
       <div class="comment_control_item_action">
-          <div class="page_nav_tab" ng-class="{'active':order==='signatures_count'}" ng-click="order='signatures_count'">熱門</div>
-          <div class="page_nav_tab" ng-class="{'active':order==='post_timestamp'}" ng-click="order='post_timestamp'">最新</div>
+          <div class="page_nav_tab" ng-class="{'active':comment_order==='votes'}" ng-click="comment_order='votes'">熱門</div>
+          <div class="page_nav_tab" ng-class="{'active':comment_order==='post_number'}" ng-click="comment_order='post_number'">最新</div>
       </div>
   </div>
 
@@ -49,7 +49,7 @@
     </div>
  </div> 
   <!-- Comment Cards -->
-    <div class="comment_item" ng-repeat="p in posts">
+    <div class="comment_item" ng-repeat="p in posts | orderBy:comment_order:true">
           <div class="post_item_info">
           <div class="post_item_order">#{{p.post_number}}</div>
           <img class="post_item_img" ng-src="images/comment/{{p.uploaded_avatar_id}}.png">
