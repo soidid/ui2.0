@@ -44,6 +44,10 @@ app.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/person.html',
       controller: 'PersonCtrl'
     }).
+      when('/search',{
+      templateUrl: 'partials/search.html',
+      controller: 'SearchCtrl'
+    }).
       when('/how-to-ask',{
       templateUrl: 'partials/how-to-ask.html',
       controller: 'IndexCtrl'
@@ -336,8 +340,6 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
                 $scope.persons.push(data[key]);
             }
         }
-        
-
       }
 
   });
@@ -430,3 +432,46 @@ app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   };
 
 }]);
+app.controller('SearchCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
+    DataService.getData('candidate').then(function(data){
+        $scope.persons = [];
+        $scope.candidates = data;
+        for(var key in data){
+           $scope.persons.push(data[key]);
+        
+        }
+     
+    });
+    DataService.getData('searchq').then(function(data){
+        
+        $scope.searchq = data;
+       
+    });
+    $scope.toTrusted = function(html_code) {
+        return $sce.trustAsHtml(html_code);
+    };
+    $scope.toggleFocus = function (cid) {
+        console.log(cid);
+        if($scope.candidate){
+          if($scope.candidate.id === cid){
+            $scope.candidate = null;
+       
+          }else{
+            $scope.candidate = $scope.candidates[cid];
+          }
+
+        }else{
+          $scope.candidate = $scope.candidates[cid];
+        }
+        
+    };
+    $scope.random = function(q_signatures_count){
+        return q_signatures_count % 13;
+
+    };
+    $scope.toggleQuestion = function (qid) {
+        //$location.path("/person/1/"+qid)
+    };
+
+}]);
+

@@ -1973,6 +1973,7 @@ input:checked + .slider::before {
 
   box-sizing: border-box;
   height: auto;
+  text-align: left;
 }
 
 .post_item_last {
@@ -2391,4 +2392,25 @@ input:checked + .slider::before {
 .comment_action_button:hover{
   color: #009688;
 
+}
+/*-- search --*/
+.content_title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 0px;
+}
+.search_result_item {
+  background: white;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 0px;
+  margin: 60px 0px 20px 0px;
+}
+.search_result_title {
+  font-weight: 700;
+}
+.keywords {
+  background: rgb(255,255,202);
 }
