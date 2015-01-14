@@ -55,6 +55,9 @@ app.config(['$routeProvider','$locationProvider',
       when('/terms',{
       templateUrl: 'partials/terms.html'
     }).
+      when('/about',{
+      templateUrl: 'partials/about.html'
+    }).
       when('/contact',{
       templateUrl: 'partials/contact.html'
     }).
@@ -148,6 +151,22 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
           $scope.sidebar = value;
       }
   };
+
+  $scope.toggleSubmenu = function(){
+      $scope.showSubmenu = !$scope.showSubmenu;
+  };
+
+  DataService.getData('candidate').then(function(data){
+      $scope.persons = [];
+      $scope.candidates = data;
+      for(var key in data){
+         $scope.persons.push(data[key]);
+      
+      }
+     
+  });
+
+ 
 
 
 }]);

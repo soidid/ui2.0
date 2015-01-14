@@ -1,10 +1,11 @@
 <div id="focus-question" ng-class="{'show':candidate}">
   <!-- Nav -->
   <div class="q_content_nav md-whiteframe-z1" ng-class="{'show':focusQuestion}">
-      <div class="q_content_nav_remove" ng-click="toggleFocus(candidate.id)"><i class="fa fa-chevron-left"></i> 全部搜尋結果</div>
+      <div class="q_content_nav_remove" ng-click="toggleFocus(candidate.id)"><i class="fa fa-chevron-left"></i> 全部“環境”搜尋結果</div>
      
   </div>
  <div id="content">
+  <div class="content_title">“{{candidate.name}}”相關結果 (2)</div>
   <!-- Question Cards -->
   <!-- * * * * * *  -->
   <div class="post_item md-whiteframe-z1" ng-repeat="q in searchq" >

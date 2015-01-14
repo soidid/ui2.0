@@ -1,15 +1,52 @@
 <div class="notification_wrapper">
     <div id="notification" class="notification_hide"></div>
 </div>
-<div id="sidebar-shadow" ng-show="sidebar"></div><!-- controlMenu -->
+<div id="sidebar-shadow" ng-show="sidebar" ng-click="showsidebar(false)"></div><!-- controlMenu -->
 <div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="showsidebar(false)">
   <div class="sidebar-container_left">
-      <a class="nav_item_sidebar--left" href="#/">給問 2.0</a>
-      <a class="nav_item_sidebar--left" href="#/">給問 2.0</a>
-  <!-- <a class="nav_item_sidebar--left" ng-click="showsidebar(false)">提問說明</a>
-  <a class="nav_item_sidebar--left" ng-click="login()" >登入</a>-->
-  </div>
+    <div class="nav_item_sidebar--user_section">
+        <span ng-show="!user">
+            <img class="nav_item_logo" src="images/logo.svg">
+            <div class="nav_item_login" ng-click="login();$event.stopPropagation();">登入</div>
+        </span>
+        <span ng-show="user">
+            <img class="nav_item_user_img" src="images/user.jpg">
+            <div class="nav_item_user_name">郭俊麟</div>
+            <div class="nav_item_user_subscribe">我的連署<div class="nav_item_user_subscribe_count">12</div></div>
+
+            <div class="nav_item_login" ng-click="logout();$event.stopPropagation();">登出</div>
+        </span>
+    </div>
+
+    <!-- section -->
+    <div class="nav_item_sidebar--section">
+      <a class="nav_item_sidebar--left" href="#/">首頁</a>
+      <a class="nav_item_sidebar--left">人物列表
+        <span class="nav_item_sidebar--switchmenu" ng-click="toggleSubmenu();$event.stopPropagation();"><i class="fa" ng-class="{'fa-chevron-down':!showSubmenu,'fa-chevron-up':showSubmenu}"></i></span></a>
+
+    </div>
+
+    <!-- sub -->
+    <div class="submenu" ng-class="{'show':showSubmenu}">
+        <a class="nav_item_sidebar--sub" href="#/person/{{p.id}}/" ng-repeat="p in persons">
+           <img class="nav_item_sidebar--sub_img" src="images/candidates/{{p.name}}.jpg">{{p.name}}
+        </a> 
+    </div>
+
+    <!-- section -->
+    <div class="nav_item_sidebar--section">
+    <a class="nav_item_sidebar--left" href="#/" ng-click="showsidebar(false)">網站使用教學</a>
+    <a class="nav_item_sidebar--left" href="#/how-to-ask" ng-click="showsidebar(false)">如何寫出好問題</a>
+    <a class="nav_item_sidebar--left" href="#/about" ng-click="showsidebar(false)">關於</a>
+    <a class="nav_item_sidebar--left" href="#/contact" ng-click="showsidebar(false)">聯絡</a>
+    
+    </div>
+  
+  
+  </div><!-- end of sidebar-container_left -->
 </div>
+
+
 <header class="nav_background md-whiteframe-z1">
   <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i> 
   </div>
@@ -21,7 +58,6 @@
   <div class="nav_search_tooltip" ng-show="Nav.nav_query">
       <a href="#/search"><div class="nav_search_tooltip_inner md-whiteframe-z1">全站搜尋</div></a>
   </div>
-  
 
 </header>
 
