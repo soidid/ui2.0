@@ -1866,6 +1866,11 @@ input:checked + .slider::before {
 .list_paper--inner {
   padding: 5px 20px;
 }
+.list_paper--content {
+  margin-top: 5px;
+  background: white;
+  padding: 5px 20px;
+}
 .list_paper---control_panel {
   padding: 10px;
   border-bottom: 1px solid rgb(220,220,220);
@@ -2524,4 +2529,7 @@ input:checked + .slider::before {
   font-size: 20px;
   font-weight: 700;
   margin-left: 8px;
+}
+.person_list_top.padding {
+  padding-bottom: 16px;
 }

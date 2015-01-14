@@ -1,15 +1,16 @@
-<div ng-controller="AuthCtrl">
-<div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
+<div ng-controller="AuthCtrl"><div ng-controller="NavCtrl as Nav">
+<div ng-include="'partials/nav.html'"></div>
 <div id="content">
-    <div class="page_wrapper page_section">
-    
+    <!-- control -->
+    <div class="person_list_top padding">
+      <div class="person_list_title">如何寫出好問題</div>
+    </div>
+    <!-- -->
     <div class="wrapper">
-        <div class="index_content md-whiteframe-z1">
+        <div class="list_paper--content md-whiteframe-z1">
             <div class="index_subsection">
-                <div class="index_maintitle">
-                   <h1>沃草寫作班：「市長，給問嗎」發問指南</h1>
-                </div>
+               
                 <a href="http://goo.gl/YvS1u8" target="_new">◎ 沃草公民學院</a>
                 <!-- https://www.facebook.com/citizenedu -->
                 <!-- http://goo.gl/#analytics/goo.gl/YvS1u8/all_time -->
@@ -105,11 +106,12 @@
                <p>阿草希望大家都能在「市長，給問嗎？」上面問得開心，眼看自己問的問題被轟轟烈烈推爆！</p>
                <div class="l_center"><img class="article_img" src="images/how-to-ask-4.png"></div>
             </div>
-        </div>
-       
-    </div><!-- end of warpper -->
-    <div ng-include="'partials/footer.html'"></div>
 
-</div><!-- end of content -->
+        </div><!-- end of list_paper -->
+        
+    </div><!-- end of wrapper -->
+   
+</div><!-- q_content -->
+</div><!-- Nav -->
+</div><!-- Auth -->
 
-</div><!-- end of auth -->
