@@ -130,7 +130,7 @@ hr {
 /* material test
 /* ------------------------------------------------------------ */
 
-header {
+#nav {
   z-index: 100;
   color: white;
   height: 40px;
@@ -138,7 +138,7 @@ header {
   position: fixed;
   top: 0px;
   box-sizing: border-box;
-  background: rgb(220, 220, 220);
+ 
   text-align: center;
 }
 
@@ -866,9 +866,13 @@ a.button--wide {
   color: white;
   cursor: pointer;
 }
-.nav_item_sidebar--section {
+.nav_item_sidebar--section_hr {
+  margin-top: 5px;
   border-bottom: 1px solid rgb(240,240,240);
 
+}
+.nav_item_sidebar--section_hr.show {
+  margin-top: 0px;
 }
 .nav_item_sidebar--user_section {
   background: #009688;
@@ -885,7 +889,7 @@ a.button--wide {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  margin-top: 40px;
+  margin-top: 25px;
 
 }
 .nav_item_user_name {
@@ -894,7 +898,7 @@ a.button--wide {
 }
 .nav_item_login {
   position: absolute;
-  bottom: 10px;
+  bottom: 14px;
   right: 10px;
   color: white;
   font-weight: 700;
@@ -903,12 +907,13 @@ a.button--wide {
 }
 .nav_item_user_subscribe {
   position: absolute;
-  bottom: 7px;
+  bottom: 14px;
   left: 10px;
   font-weight: 700;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   color: white;
+
 }
 .nav_item_user_subscribe_count {
   padding: 1px 10px;
@@ -920,7 +925,7 @@ a.button--wide {
 }
 a.nav_item_sidebar--left {
   display: block;
-  padding: 10px;
+  padding: 13px 0px 10px 20px;
   color: rgb(53,55,54);
   text-align: left;
   cursor: pointer;
@@ -950,14 +955,14 @@ a.nav_item_sidebar {
 }
 a.nav_item_sidebar--sub {
   display: block;
-  padding: 12px 10px;
+  padding: 10px 0px 10px 20px;
   height: 50px;
   text-align: left;
   cursor: pointer;
   position: relative;
   color: rgb(53,55,54);
-  padding-left: 24px;
-  vertical-align: top;
+  padding-left: 34px;
+  
   background: rgb(240,240,240);
 }
 .nav_item_sidebar--sub_img {
@@ -966,6 +971,11 @@ a.nav_item_sidebar--sub {
   display: inline-block;
   border-radius: 50%;
   margin-right: 10px;
+}
+.nav_item_sidebar--sub_name {
+  display: inline-block;
+  padding-top: 5px;
+  vertical-align: top;
 }
 .nav_item_sidebar--switchmenu {
   width: 50px;
@@ -1485,6 +1495,7 @@ a.nav_item_sidebar--sub {
   padding: 20px;
   height: 65px;
   box-sizing: border-box;
+  z-index: 500;
 
 }
 .notification_hide {
@@ -2502,4 +2513,15 @@ input:checked + .slider::before {
 }
 .keywords {
   background: rgb(255,255,202);
+}
+/* ------------ */
+.person_list_top {
+  background: #009688;
+  color: white;
+  padding-top: 16px;
+}
+.person_list_title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 8px;
 }

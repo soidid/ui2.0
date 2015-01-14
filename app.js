@@ -44,6 +44,10 @@ app.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/person.html',
       controller: 'PersonCtrl'
     }).
+      when('/person-list',{
+      templateUrl: 'partials/person-list.html',
+      controller: 'PersonListCtrl'
+    }).
       when('/search',{
       templateUrl: 'partials/search.html',
       controller: 'SearchCtrl'
@@ -154,6 +158,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
 
   $scope.toggleSubmenu = function(){
       $scope.showSubmenu = !$scope.showSubmenu;
+      console.log("toggleSubmenu");
   };
 
   DataService.getData('candidate').then(function(data){
@@ -165,9 +170,6 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
       }
      
   });
-
- 
-
 
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
@@ -203,8 +205,23 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   }
 
 }]);
+app.controller('PersonListCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
+  
+  $scope.selectedCollectionMenu = 'all';
+  $scope.isCollectionMenuSelected = function(value){
+      return $scope.selectedCollectionMenu === value;
+  };
+  $scope.setCollectionMenuitem = function(value){
+      $scope.selectedCollectionMenu = value;
+  };
+  DataService.getData('candidate').then(function(data){
+      $scope.persons = [];
+      for(var key in data){
+         $scope.persons.push(data[key]);
+      }
 
-
+  });
+}]);
 app.controller('PersonCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
 
   $scope.topic = '最新提出';

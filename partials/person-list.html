@@ -1,0 +1,33 @@
+<div ng-controller="AuthCtrl"><div ng-controller="NavCtrl as Nav">
+<div ng-include="'partials/nav.html'"></div>
+<div id="content">
+
+  <!-- control -->
+  <div class="person_list_top">
+      <div class="person_list_title">人物列表</div>
+      <div class="page_nav_tab" ng-class="{'active':isCollectionMenuSelected('collecting')}" ng-click="setCollectionMenuitem('collecting')">提問中</div>
+      <div class="page_nav_tab" ng-class="{'active':isCollectionMenuSelected('top')}" ng-click="setCollectionMenuitem('top')">排行榜</div>
+      <div class="page_nav_tab" ng-class="{'active':isCollectionMenuSelected('all')}" ng-click="setCollectionMenuitem('all')">全部</div>
+
+  </div>
+      <!-- -->
+     
+
+  <div class="wrapper">
+      <a class="person_card md-whiteframe-z1" ng-repeat="person in persons" ng-hide="isCollectionMenuSelected('collecting')&&!person.deadline" href="#/person/{{person.id}}">
+          <img class="person_img" src="images/candidates/{{person.name}}.jpg">
+          <div class="person_info"> 
+              <div class="person_name">{{person.name}}</div>
+              <div>累積回答：{{person.answered}} 題</div>
+              <div ng-hide="person.deadline">最新回答：{{person.latest}}</div>
+              <div ng-show="person.deadline">連署截止：{{person.deadline}}</div>
+          </div>
+      </a>
+      
+        
+    </div><!-- end of wrapper -->
+
+  <div ng-include="'partials/footer.html'"></div>
+</div><!-- q_content -->
+</div><!-- Nav -->
+</div><!-- Auth -->

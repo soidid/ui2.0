@@ -6,7 +6,7 @@
   <div class="sidebar-container_left">
     <div class="nav_item_sidebar--user_section">
         <span ng-show="!user">
-            <img class="nav_item_logo" src="images/logo.svg">
+            <a href="#/"><img class="nav_item_logo" src="images/logo.svg"></a>
             <div class="nav_item_login" ng-click="login();$event.stopPropagation();">登入</div>
         </span>
         <span ng-show="user">
@@ -18,36 +18,39 @@
         </span>
     </div>
 
-    <!-- section -->
-    <div class="nav_item_sidebar--section">
+    
+    
       <a class="nav_item_sidebar--left" href="#/">首頁</a>
-      <a class="nav_item_sidebar--left">人物列表
-        <span class="nav_item_sidebar--switchmenu" ng-click="toggleSubmenu();$event.stopPropagation();"><i class="fa" ng-class="{'fa-chevron-down':!showSubmenu,'fa-chevron-up':showSubmenu}"></i></span></a>
+      <a class="nav_item_sidebar--left" ng-click="go('person-list')">人物列表
+        <span class="nav_item_sidebar--switchmenu" ng-click="toggleSubmenu(); $event.stopPropagation();"><i class="fa" ng-class="{'fa-chevron-down':!showSubmenu,'fa-chevron-up':showSubmenu}"></i></span></a>
 
-    </div>
+    
 
     <!-- sub -->
     <div class="submenu" ng-class="{'show':showSubmenu}">
         <a class="nav_item_sidebar--sub" href="#/person/{{p.id}}/" ng-repeat="p in persons">
-           <img class="nav_item_sidebar--sub_img" src="images/candidates/{{p.name}}.jpg">{{p.name}}
+           <img class="nav_item_sidebar--sub_img" src="images/candidates/{{p.name}}.jpg">
+           <div class="nav_item_sidebar--sub_name">{{p.name}}</div>
         </a> 
     </div>
 
-    <!-- section -->
-    <div class="nav_item_sidebar--section">
+    <!-- section hr-->
+    <hr class="nav_item_sidebar--section_hr" ng-class="{'show':showSubmenu}"/>
+    
     <a class="nav_item_sidebar--left" href="#/" ng-click="showsidebar(false)">網站使用教學</a>
     <a class="nav_item_sidebar--left" href="#/how-to-ask" ng-click="showsidebar(false)">如何寫出好問題</a>
     <a class="nav_item_sidebar--left" href="#/about" ng-click="showsidebar(false)">關於</a>
-    <a class="nav_item_sidebar--left" href="#/contact" ng-click="showsidebar(false)">聯絡</a>
+    <a class="nav_item_sidebar--left" href="#/contact" ng-click="showsidebar(false)">聯絡我們</a>
     
-    </div>
+    <!-- section hr-->
+    <hr class="nav_item_sidebar--section_hr"/>
   
   
   </div><!-- end of sidebar-container_left -->
 </div>
 
 
-<header class="nav_background md-whiteframe-z1">
+<div id="nav" class="nav_background md-whiteframe-z1">
   <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i> 
   </div>
   <div class="nav_search">
@@ -59,7 +62,7 @@
       <a href="#/search"><div class="nav_search_tooltip_inner md-whiteframe-z1">全站搜尋</div></a>
   </div>
 
-</header>
+</div>
 
 
 
