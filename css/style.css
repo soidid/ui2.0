@@ -2034,10 +2034,11 @@ input:checked + .slider::before {
 
 }
 .cover_title {
-
   display: inline-block;
- 
- 
+}
+.cover_subtitle {
+  font-size: 16px;
+  padding-right: 20px;
 }
 .cover_img {
   width: 100%;
@@ -2050,8 +2051,8 @@ input:checked + .slider::before {
   display: inline-block;
   border: 1px solid rgb(247,247,247);
   padding: 4px 12px;
-  margin: 2px;
-  margin-top: 6px;
+  
+  margin: 20px 20px 0px 0px;
   cursor: pointer;
 
   transition-property: background;
