@@ -1269,8 +1269,9 @@ a.nav_item_sidebar--sub {
 
 }
 .ask_form.show{
-  height: 100vh;
+  top: 0px;
   bottom: 0%;
+  height: 100%;
 
   -moz-transition: .2s;
   -ms-transition: .2s;
