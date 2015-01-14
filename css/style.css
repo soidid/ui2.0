@@ -518,7 +518,7 @@ transition-duration: .5s;
   right: 0px;
   -webkit-transition: right .5s ease-in-out;
   transition: right .5s ease-in-out;
-  overflow: scroll;
+  height: auto;
 
 }
 .q_content_title {
@@ -815,7 +815,7 @@ a.button--wide {
   transition: .2s;
   transition-duration: .5s;
   overflow: scroll;
-  height: 100%;
+  height: auto;
   width: 0px;
   right: -100%;
 
